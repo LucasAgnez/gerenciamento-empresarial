@@ -1,0 +1,32 @@
+.estoque{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+}
+
+.pesquisa{
+    padding: 2rem;
+}
+.pesquisa input{
+    padding: 0.25rem 0.5rem;
+    border: none;
+}
+
+.barraPesquisa{
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    padding: 0.25rem 1rem;
+    border-radius: 2rem;
+    border: 1px solid #242424;
+}
+
+.estoqueGrid{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(3,1fr);
+    gap: 1rem;
+    justify-self: center;
+}
