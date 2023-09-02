@@ -13,6 +13,7 @@ function App() {
             <Route element={<Home/>} path='/'/>
             <Route element={<Estoque/>} path='/gerenciamento/estoque'/>
             <Route element={<Estoque/>} path='/gerenciamento/equipe'/>
+            <Route element={<Estoque />} path="/gerenciamento/estoque/:id"  />
           </Routes>
         </BrowserRouter>
       </div>
