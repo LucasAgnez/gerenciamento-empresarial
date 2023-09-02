@@ -6,3 +6,22 @@
     padding: 8px;
     box-shadow: 0 .1rem .25rem rgba(0,0,0,25%);
 }
+.produtoMiniatura:hover{
+    transform: scale(1.02);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,40%);
+}
+.conteudo{
+    justify-content: center;
+
+}
+
+.image{
+    height: 120px;
+    width: 180px;
+}
+
+.infos{
+    display: flex;
+    justify-content: space-between;
+}
+

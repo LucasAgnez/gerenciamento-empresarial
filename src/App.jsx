@@ -11,7 +11,8 @@ function App() {
         <Sidebar/>
           <Routes>
             <Route element={<Home/>} path='/'/>
-            <Route element={<Estoque/>} path='/management/stock'/>
+            <Route element={<Estoque/>} path='/gerenciamento/estoque'/>
+            <Route element={<Estoque/>} path='/gerenciamento/equipe'/>
           </Routes>
         </BrowserRouter>
       </div>

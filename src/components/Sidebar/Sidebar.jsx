@@ -8,17 +8,14 @@ import { FaBoxOpen } from 'react-icons/fa6';
 import { GrUserManager } from "react-icons/gr";
 import styles from './Sidebar.module.css'
 import { useNavigate } from 'react-router-dom';
-//  import { useRouter } from "next/router";
 
 const Sidebar = () => {
-    //const router = useRouter()
     const navigate = useNavigate()
 
     return (
     <nav className={styles.sidebar}>
         <Navigation
-            // you can use your own router's api to get pathname
-            //activeItemId="/management/members"
+            //activeItemId="/"
             onSelect={({itemId}) => {
               navigate(itemId)
             }}
@@ -36,28 +33,28 @@ const Sidebar = () => {
                 subNav: [
                     {
                         title: 'Estoque',
-                        itemId: '/management/stock',
+                        itemId: '/gerenciamento/estoque',
                         elemBefore: () => <FaBoxOpen/>,
                     },
                     {
-                        title: 'Funcionários',
-                        itemId: '/management/members',
+                        title: 'Equipe',
+                        itemId: '/gerenciamento/equipe',
                         elemBefore: () => <FiUsers/>,
                   },
                 ],
               },
               {
                 title: 'Eventos',
-                itemId: '/events',
+                itemId: '/eventos',
                 elemBefore: () => <FiCalendar/>,
               },
             ]}
           />
 
         <Navigation
-            activeItemId="/management/members"
+            activeItemId="/"
             onSelect={({itemId}) => {
-              // maybe push to the route
+                navigate(itemId)
             }}
             items={[
               {
