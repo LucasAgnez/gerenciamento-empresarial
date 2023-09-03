@@ -2,7 +2,9 @@ import './App.css'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Sidebar from './components/Sidebar/Sidebar';
 import Estoque from './pages/Estoque/Estoque';
+import Equipe from './pages/Equipe/Equipe';
 import Home from './pages/Home/Home';
+import Produto from './pages/Produto/Produto';
 
 function App() {
     return (
@@ -12,8 +14,8 @@ function App() {
           <Routes>
             <Route element={<Home/>} path='/'/>
             <Route element={<Estoque/>} path='/gerenciamento/estoque'/>
-            <Route element={<Estoque/>} path='/gerenciamento/equipe'/>
-            <Route element={<Estoque />} path="/gerenciamento/estoque/:id"  />
+            <Route element={<Produto/>} path="/gerenciamento/estoque/:id"  />
+            <Route element={<Equipe/>} path='/gerenciamento/equipe'/>
           </Routes>
         </BrowserRouter>
       </div>

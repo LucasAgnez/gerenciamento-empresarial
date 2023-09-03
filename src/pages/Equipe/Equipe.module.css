@@ -1,7 +1,7 @@
-.estoque{
+.equipe{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     padding-left: 5rem;
 }
 
@@ -11,14 +11,14 @@
 }
 
 .filtro{
-    align-self: center;
+    align-items: center;
     height : 40px ;
     width : 40px ;
     transition : all .3s ease ;
     border-radius: 100%;
     border-style: groove;
     border-color: #242424;
-    border-width: 0px;
+    border-width: 0.1px;
 }
 .filtro:hover{
     background-color: #d2d2d2b4;
@@ -41,10 +41,8 @@
     border: 1px solid #242424;
 }
 
-.estoqueGrid{
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    grid-template-rows: repeat(3,1fr);
-    gap: 2rem;
-    justify-self: center;
+.listaEquipe{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
