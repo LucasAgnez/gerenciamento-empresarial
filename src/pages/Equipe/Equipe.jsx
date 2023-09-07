@@ -48,9 +48,9 @@ const Equipe = () => {
                 <td className={styles.td}>{item.salario}</td>
                 <td className={styles.td}>
                   <div className={styles.actions_div}>
-                    <button className={styles.actions_btn}><BsEyeFill /></button>
-                    <button className={styles.actions_btn}><BsFillPencilFill color='orange' /></button>
-                    <button className={styles.actions_btn}><BsFillTrashFill color='crimson' /></button>
+                    <button className={styles.actions_btn}><BsEyeFill size={20} /></button>
+                    <button className={styles.actions_btn}><BsFillPencilFill color='orange' size={20} /></button>
+                    <button className={styles.actions_btn}><BsFillTrashFill color='crimson' size={20} /></button>
                   </div>
                 </td>
             </tr>
