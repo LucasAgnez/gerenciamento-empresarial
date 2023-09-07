@@ -46,3 +46,17 @@
     flex-direction: column;
     gap: 1rem;
 }
+
+
+.tableHeader {
+    align-items: center;
+}
+
+.tr{
+    background-color: rgb(64, 0, 94);
+    align-items: center;
+}
+.td{
+    width: 200px;
+    border-collapse: collapse;
+}
