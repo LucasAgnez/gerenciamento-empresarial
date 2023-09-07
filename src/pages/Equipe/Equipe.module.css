@@ -60,3 +60,31 @@
     width: 150px;
     border-collapse: collapse;
 }
+
+.actions_div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.actions_btn {
+    border: 0cm;
+}
+
+.create_btn {
+    background-color:green;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+    border: 0cm solid white;
+    border-radius: 5px;
+}
+
+.create_btn:hover{
+    background-color: darkgreen;
+}
+
+.btn_div {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+}

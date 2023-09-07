@@ -2,7 +2,7 @@ import FuncionarioMiniatura from "../../components/FuncionarioMiniatura/Funciona
 import styles from "./Equipe.module.css";
 import { FiSearch } from "react-icons/fi";
 import { FaFilter } from "react-icons/fa";
-import { BsFillPencilFill, BsFillTrashFill, BsEyeFill } from "react-icons/bs"
+import { BsFillPencilFill, BsFillTrashFill, BsEyeFill, BsPlusLg } from "react-icons/bs"
 import data from "./mock-data.json"
 
 
@@ -47,11 +47,11 @@ const Equipe = () => {
                 <td className={styles.td}>{item.email}</td>
                 <td className={styles.td}>{item.salario}</td>
                 <td className={styles.td}>
-                  <span>
-                    <BsEyeFill />
-                    <BsFillPencilFill />
-                    <BsFillTrashFill />
-                  </span>
+                  <div className={styles.actions_div}>
+                    <button className={styles.actions_btn}><BsEyeFill /></button>
+                    <button className={styles.actions_btn}><BsFillPencilFill color='orange' /></button>
+                    <button className={styles.actions_btn}><BsFillTrashFill color='crimson' /></button>
+                  </div>
                 </td>
             </tr>
           ))}
@@ -59,6 +59,14 @@ const Equipe = () => {
         </tbody>
 
       </table>
+      <button type="button" class={styles.create_btn}>
+        <div className={styles.btn_div}>
+          <BsPlusLg size={20} />
+          <span>Cadastrar</span>
+        </div>
+      </button>
+
+
       <section className={styles.listaEquipe}>
         <FuncionarioMiniatura
           nome="Daniel Sehn Colao"
