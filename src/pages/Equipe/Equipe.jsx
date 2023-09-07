@@ -39,8 +39,6 @@ const Equipe = () => {
 
         <tbody>
           {data.map( (item, index) => (
-            //Uso de parenteses por estarmos lidando com uma expressao (html)
-            //Chaves seria para código
             <tr key={index} align='center'>
                 <td className={styles.td}>{index}</td>
                 <td className={styles.td}>{item.nome}</td>
