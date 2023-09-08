@@ -26,7 +26,7 @@ const Equipe = () => {
       <table border={1}>
 
         <thead>
-          <tr className={styles.tr}>
+          <tr className={styles.tableRowHeader}>
             <th className={styles.tableHeader}>ID</th>
             <th className={styles.tableHeader}>Nome</th>
             <th className={styles.tableHeader}>Departamento</th>
@@ -39,14 +39,14 @@ const Equipe = () => {
 
         <tbody>
           {data.map( (item, index) => (
-            <tr key={index} align='center'>
-                <td className={styles.td}>{index}</td>
-                <td className={styles.td}>{item.nome}</td>
-                <td className={styles.td}>{item.departamento}</td>
-                <td className={styles.td}>{item.cpf}</td>
-                <td className={styles.td}>{item.email}</td>
-                <td className={styles.td}>{item.salario}</td>
-                <td className={styles.td}>
+            <tr key={index} align='center' className={styles.tableRow}>
+                <td>{index}</td>
+                <td>{item.nome}</td>
+                <td>{item.departamento}</td>
+                <td>{item.cpf}</td>
+                <td>{item.email}</td>
+                <td>{item.salario}</td>
+                <td>
                   <div className={styles.actions_div}>
                     <button className={styles.actions_btn}><BsEyeFill size={20} /></button>
                     <button className={styles.actions_btn}><BsFillPencilFill color='orange' size={20} /></button>

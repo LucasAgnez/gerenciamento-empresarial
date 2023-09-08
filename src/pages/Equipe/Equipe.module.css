@@ -52,13 +52,27 @@
     align-items: center;
 }
 
-.tr{
+.tableRowHeader{
     background-color: rgb(64, 0, 94);
     align-items: center;
 }
+
+
 td{
     width: 150px;
+    padding: 5px 5px 5px 5px;
     border-collapse: collapse;
+    border: 0px solid;
+}
+
+.tableRow{
+    width: 150px;
+    border-collapse: collapse;
+    border: 0px solid;
+}
+
+.tableRow:hover{
+    background-color: #4b4a4a;
 }
 
 .actions_div{
@@ -66,10 +80,13 @@ td{
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    background-color: transparent;
 }
 
 .actions_btn {
+    margin-left: 3px;
     border: 0cm;
+    padding: 3px;
 }
 
 .create_btn {
@@ -78,6 +95,9 @@ td{
     padding: 5px 5px 5px 5px;
     border: 0cm solid white;
     border-radius: 5px;
+    margin-left: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .create_btn:hover{
