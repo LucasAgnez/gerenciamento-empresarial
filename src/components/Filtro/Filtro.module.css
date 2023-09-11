@@ -1,0 +1,35 @@
+.icon{
+    margin: auto;
+    padding: 0px
+}
+
+.filtro{
+    padding: 0px;
+    align-self: center;
+    height : 40px ;
+    width : 40px ;
+    transition : all .3s ease ;
+    border-radius: 100%;
+    border-style: groove;
+    border-color: #242424;
+    border-width: 0px;
+}
+.filtro:hover{
+    background-color: #d2d2d2b4;
+}
+
+.head{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: right;
+}
+
+.menu{
+    padding: 0px;
+    background-color: white;
+    border: #4b4b4b;
+    border-radius: 5%;
+    border-style: groove;
+    border-color: #242424;
+}
