@@ -5,6 +5,7 @@ import Estoque from './pages/Estoque/Estoque';
 import Equipe from './pages/Equipe/Equipe';
 import Home from './pages/Home/Home';
 import Produto from './pages/Produto/Produto';
+import ProdutoCreate from './pages/Produto/ProdutoCreate';
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route element={<Home/>} path='/'/>
             <Route element={<Estoque/>} path='/gerenciamento/estoque'/>
+            <Route element={<ProdutoCreate/>} path='/gerenciamento/estoque/create'/>
             <Route element={<Produto/>} path="/gerenciamento/estoque/:id"  />
             <Route element={<Equipe/>} path='/gerenciamento/equipe'/>
           </Routes>

@@ -3,9 +3,11 @@ import styles from "./Estoque.module.css";
 import { FiSearch } from "react-icons/fi";
 import { FaFilter } from "react-icons/fa";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Estoque = () => {
   const [produtos, setProdutos] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // URL da API que retorna a lista de produtos.
@@ -30,6 +32,11 @@ const Estoque = () => {
         </section>
         <button className={styles.filtro}>
           <FaFilter/>
+        </button>
+      </section>
+      <section>
+        <button className={styles.addButton} onClick={() => navigate(`/gerenciamento/estoque/create`)}>
+            Adicionar
         </button>
       </section>
       <section className={styles.estoqueGrid}>
