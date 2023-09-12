@@ -11,8 +11,6 @@
 }
 
 .filtro{
-    padding: 0px;
-    align-self: center;
     height : 40px ;
     width : 40px ;
     transition : all .3s ease ;
@@ -28,10 +26,6 @@
 .pesquisa{
     padding: 2rem;
 }
-.pesquisa input{
-    padding: 0.25rem 0.5rem;
-    border: none;
-}
 
 .barraPesquisa{
     justify-content: space-between;
@@ -43,6 +37,7 @@
 }
 
 .estoqueGrid{
+    width: 1016px;
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(3,1fr);

@@ -13,7 +13,15 @@ import { Menu, Dropdown, MenuButton } from "@mui/base/";
 import { IconButton } from "@mui/material/";
 
 const Filtro = (props) => {
+
+    function handleConfirm(){
+        setOpenMenu(false)
+        console.log("range: ", menu.quant.min, "--", menu.quant.max)
+        console.log("tags: ", )
+    }
   const { slider, labels } = props;
+  const [openMenu, setOpenMenu] = useState(false)
+  const [tags, setTags] = useState(labels)
   const [menu, setMenu] = useState({
     quant: {
       min: 0,
@@ -21,8 +29,8 @@ const Filtro = (props) => {
     },
   });
   return (
-    <Dropdown>
-      <MenuButton className={styles.filtro}>
+    <Dropdown open={openMenu}>
+      <MenuButton className={styles.filtro} onClick={() => setOpenMenu(!openMenu)}>
         <FaFilter className={styles.icon} />
       </MenuButton>
       <Menu className={styles.menu}>
@@ -48,7 +56,7 @@ const Filtro = (props) => {
         ) : (
           <></>
         )}
-        <IconButton variant="contained">
+        <IconButton variant="contained" onClick={() => handleConfirm()}>
           <FaCheck color="black"/>
         </IconButton>
         </div>

@@ -8,6 +8,7 @@ import { FaBoxOpen } from 'react-icons/fa6';
 import { GrUserManager } from "react-icons/gr";
 import styles from './Sidebar.module.css'
 import { useNavigate } from 'react-router-dom';
+import { FaBoxes } from  'react-icons/fa'
 
 const Sidebar = () => {
     const navigate = useNavigate()
@@ -17,6 +18,9 @@ const Sidebar = () => {
         <Navigation
             //activeItemId="/"
             onSelect={({itemId}) => {
+                if(itemId == "gerenciamento" || itemId == "eventos"){
+                    return
+                }
               navigate(itemId)
             }}
             items={[
@@ -28,7 +32,7 @@ const Sidebar = () => {
             },
             {
                 title: 'Gerenciamento',
-                itemId: '',
+                itemId: 'gerenciamento',
                 elemBefore: () => <GrUserManager/>,
                 subNav: [
                     {
@@ -45,8 +49,18 @@ const Sidebar = () => {
               },
               {
                 title: 'Eventos',
-                itemId: '/eventos',
+                itemId: 'eventos',
                 elemBefore: () => <FiCalendar/>,
+                subNav: [
+                    {
+                        title: 'Registrar Reabastecimento',
+                        itemId: '/eventos/reabastecimento',
+                    },
+                    {
+                        title: 'Contratação',
+                        itemId: '/eventos/contratacao',
+                  },
+                ],
               },
             ]}
           />
@@ -59,7 +73,7 @@ const Sidebar = () => {
             items={[
               {
                 title: 'Configurações',
-                itemId: '/config',
+                itemId: '/configuracoes',
                 elemBefore: () => <FaGears/>,
               },
               {
