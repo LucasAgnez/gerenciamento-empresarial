@@ -81,7 +81,7 @@ const Home = () => {
   ];
 
   return (
-    <main>
+    <main className={styles.main}>
       <header>
         <h1>Estatísticas de vendas</h1>
       </header>

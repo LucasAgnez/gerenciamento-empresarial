@@ -8,6 +8,7 @@ import Produto from './pages/Produto/Produto';
 import Reabastecimento from './pages/Reabastecimento/Reabastecimento';
 import Contratacao from './pages/Contratacao/Contratacao';
 import Configuracoes from './pages/Configuracoes/Configuracoes';
+import Funcionario from './pages/Funcionario/Funcionario';
 
 function App() {
     return (
@@ -19,7 +20,7 @@ function App() {
             <Route element={<Estoque/>} path='/gerenciamento/estoque'/>
             <Route element={<Produto/>} path="/gerenciamento/estoque/:id"  />
             <Route element={<Equipe/>} path='/gerenciamento/equipe'/>
-            <Route element={<Produto/>} path='/gerenciamento/equipe/:id'/>
+            <Route element={<Funcionario/>} path='/gerenciamento/equipe/:id'/>
             <Route element={<Reabastecimento/>} path='/eventos/reabastecimento'/>
             <Route element={<Contratacao/>} path='/eventos/contratacao'/>
             <Route element={<Configuracoes/>} path='/configuracoes'/>
