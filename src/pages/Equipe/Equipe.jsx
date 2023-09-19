@@ -4,9 +4,13 @@ import { FiSearch } from "react-icons/fi";
 import { FaFilter } from "react-icons/fa";
 import { BsFillPencilFill, BsFillTrashFill, BsEyeFill, BsPlusLg } from "react-icons/bs"
 import data from "./mock-data.json"
+import ModalCadastrarFuncionario from "../../components/Modals/ModalCadastrarFuncionario";
+import { useState } from "react";
 
 
 const Equipe = () => {
+
+  const [modalCadastro, setModalCadastro] = useState(false);
 
   return (
     <main className={styles.equipe}>

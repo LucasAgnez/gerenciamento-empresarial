@@ -1,0 +1,13 @@
+.btn_cadastrar {
+    border-radius: 15%;
+    border: 0px solid transparent;
+    background-color: green;
+}
+
+.btn_fechar{
+    border-radius: 15%;
+    border: 0px solid transparent;
+    background-color: crimson;
+}
+
+
