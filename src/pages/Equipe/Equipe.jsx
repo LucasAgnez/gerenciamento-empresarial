@@ -26,7 +26,7 @@ const Equipe = () => {
         </button>
       </section>
 
-      <caption>Funcionários</caption>
+      <caption><h3>Funcionários</h3></caption>
       <table border={1}>
 
         <thead>
@@ -63,13 +63,13 @@ const Equipe = () => {
         </tbody>
 
       </table>
-      <button type="button" class={styles.create_btn}>
+      <button type="button" class={styles.create_btn} onClick={() => setModalCadastro(true)}>
         <div className={styles.btn_div}>
           <BsPlusLg size={20} />
           <span>Cadastrar</span>
         </div>
       </button>
-
+      {modalCadastro && <ModalCadastrarFuncionario closeModal={setModalCadastro} />}
 
       <section className={styles.listaEquipe}>
         <FuncionarioMiniatura

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import styles from "./CadastrarFuncionario.module.css";
 
-const ModalCadastrarFuncionario = (props) => {
-
-    const [showModal, setShowModal] = useState(false);
+const ModalCadastrarFuncionario = ({ closeModal }) => {
 
     return (
         <div>
@@ -42,10 +40,10 @@ const ModalCadastrarFuncionario = (props) => {
             </section>
 
             <footer>
-                <button type="submit" className={styles.btn_cadastrar} onClick={() => setShowModal(false)}>
+                <button type="submit" className={styles.btn_cadastrar} onClick={() => closeModal(false)}>
                     Cadastrar
                 </button>
-                <button type="button" className={styles.btn_fechar} onClick={() => setShowModal(false)}>
+                <button type="button" className={styles.btn_fechar} onClick={() => closeModal(false)}>
                     Fechar
                 </button>
             </footer>
