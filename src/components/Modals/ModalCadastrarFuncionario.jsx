@@ -17,12 +17,12 @@ const ModalCadastrarFuncionario = (props) => {
                 <form>
                     <fieldset>
                         <label>Nome Completo</label>
-                        <input type="text" name="nome" id="nome"/>
+                        <input type="text" name="nome" id="nome" required/>
                     </fieldset>
 
                     <fieldset>
                         <label> Departamento</label>
-                        <select id="departamentos" name="departamentos">
+                        <select id="departamentos" name="departamentos" required>
                             <option value="dp1">Departamento 01</option>
                             <option value="dp2">Departamento 02</option>
                             <option value="dp3">Departamento 03</option>
@@ -31,7 +31,7 @@ const ModalCadastrarFuncionario = (props) => {
 
                     <fieldset>
                         <label>CPF</label>
-                        <input type="text" name="cpf" id="cpf"/>
+                        <input type="text" name="cpf" id="cpf" required/>
                     </fieldset>
 
                     <fieldset>

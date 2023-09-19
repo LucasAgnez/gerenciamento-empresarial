@@ -4,10 +4,20 @@
     background-color: green;
 }
 
+.btn_cadastrar:hover {
+    cursor: pointer;
+    background-color: rgb(54, 233, 54);
+}
+
 .btn_fechar{
     border-radius: 15%;
     border: 0px solid transparent;
     background-color: crimson;
+}
+
+.btn_fechar:hover{
+    cursor: pointer;
+    background-color: rgb(233, 75, 106);
 }
 
 
