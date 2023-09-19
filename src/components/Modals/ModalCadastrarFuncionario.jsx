@@ -22,12 +22,11 @@ const ModalCadastrarFuncionario = (props) => {
 
                     <fieldset>
                         <label> Departamento</label>
-                        <input list="departamentos"/>
-                        <datalist id="departamentos">
-                            <option value="Departamento 01" />
-                            <option value="Departamento 02" />
-                            <option value="Departamento 03" />
-                        </datalist>
+                        <select id="departamentos" name="departamentos">
+                            <option value="dp1">Departamento 01</option>
+                            <option value="dp2">Departamento 02</option>
+                            <option value="dp3">Departamento 03</option>
+                        </select>
                     </fieldset>
 
                     <fieldset>
