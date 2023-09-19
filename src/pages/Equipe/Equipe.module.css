@@ -89,6 +89,10 @@ td{
     padding: 3px;
 }
 
+.actions_btn:hover{
+    cursor: pointer;
+}
+
 .create_btn {
     background-color:green;
     text-align: center;
@@ -101,6 +105,7 @@ td{
 }
 
 .create_btn:hover{
+    cursor: pointer;
     background-color: darkgreen;
 }
 
