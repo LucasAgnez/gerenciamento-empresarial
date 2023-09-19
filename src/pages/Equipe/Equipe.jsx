@@ -71,7 +71,7 @@ const Equipe = () => {
       </button>
       {modalCadastro && <ModalCadastrarFuncionario closeModal={setModalCadastro} />}
 
-      <section className={styles.listaEquipe}>
+      {/* <section className={styles.listaEquipe}>
         <FuncionarioMiniatura
           nome="Daniel Sehn Colao"
           id="10500312"
@@ -82,7 +82,7 @@ const Equipe = () => {
         <FuncionarioMiniatura />
         <FuncionarioMiniatura />
         <FuncionarioMiniatura />
-      </section>
+      </section> */}
     </main>
   );
 };

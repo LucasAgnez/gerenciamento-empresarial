@@ -1,5 +1,22 @@
+.modal_background {
+    background-color: rgba(0, 0, 0, 0.5); /* Define a cor do fundo e a transparência */
+    position: fixed; /* Isso cobre a tela inteira mesmo quando a página é rolada */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; /* Garante que o modal apareça acima do conteúdo restante */
+}
+
 .btn_cadastrar {
-    border-radius: 15%;
+    padding: 5px 5px 5px 5px;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
     border: 0px solid transparent;
     background-color: green;
 }
@@ -10,7 +27,11 @@
 }
 
 .btn_fechar{
-    border-radius: 15%;
+    padding: 5px 5px 5px 5px;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
     border: 0px solid transparent;
     background-color: crimson;
 }
