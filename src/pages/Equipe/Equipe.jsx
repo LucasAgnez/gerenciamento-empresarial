@@ -36,7 +36,7 @@ const Equipe = () => {
             <th className={styles.tableHeader}>Departamento</th>
             <th className={styles.tableHeader}>CPF</th>
             <th className={styles.tableHeader}>Email</th>
-            <th className={styles.tableHeader}>Salário</th>
+            {/* <th className={styles.tableHeader}>Salário</th> */}
             <th className={styles.tableHeader}>Ações</th>
           </tr>
         </thead>
@@ -49,7 +49,7 @@ const Equipe = () => {
                 <td>{item.departamento}</td>
                 <td>{item.cpf}</td>
                 <td>{item.email}</td>
-                <td>{item.salario}</td>
+                {/* <td>{item.salario}</td> */}
                 <td>
                   <div className={styles.actions_div}>
                     <button className={styles.actions_btn}><BsEyeFill size={20} /></button>

@@ -8,7 +8,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 100; /* Garante que o modal apareça acima do conteúdo restante */
+    z-index: 100; /* Garante que o modal apareça acima do conteúdo restante */   
+}
+
+.modal_container * {
+    background-color: rgb(28, 0, 92);
+    border: 0 solid transparent;
+    padding: 10px;
+    animation: fade 0.5s;
+}
+
+.modal_titulo {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
 }
 
 .btn_cadastrar {
@@ -43,4 +55,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
 }

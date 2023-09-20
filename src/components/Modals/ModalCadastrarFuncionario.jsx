@@ -5,9 +5,9 @@ const ModalCadastrarFuncionario = ({ closeModal }) => {
 
     return (
         <div className={styles.modal_background}>
-            <div>
+            <div className={styles.modal_container}>
                 <header>
-                    <div>
+                    <div className={styles.modal_titulo}>
                         <h3>Cadastro de Funcionário</h3>
                     </div>
                 </header>
@@ -16,7 +16,7 @@ const ModalCadastrarFuncionario = ({ closeModal }) => {
                     <form>
                         <fieldset>
                             <label>Nome Completo</label> <br />
-                            <input type="text" name="nome" id="nome" required/>
+                            <input type="text" name="nome" id="nome" placeholder="Digite o nome completo." maxLength={250} required/>
                         </fieldset>
 
                         <fieldset>
@@ -30,19 +30,19 @@ const ModalCadastrarFuncionario = ({ closeModal }) => {
 
                         <fieldset>
                             <label>CPF</label> <br />
-                            <input type="text" name="cpf" id="cpf" required/>
+                            <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" required/>
                         </fieldset>
 
                         <fieldset>
                             <label>Email</label> <br />
-                            <input type="email" name="email" id="email"/>
+                            <input type="email" name="email" placeholder="exemplo@gmail.com" maxLength={250} id="email"/>
                         </fieldset>
                     </form>
                 </section>
 
                 <footer className={styles.modal_footer}>
                     <button type="submit" className={styles.btn_cadastrar} onClick={() => closeModal(false)}>
-                        Cadastrar
+                        Confirmar
                     </button>
                     <button type="button" className={styles.btn_fechar} onClick={() => closeModal(false)}>
                         Fechar
