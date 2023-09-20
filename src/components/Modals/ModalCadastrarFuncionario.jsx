@@ -40,7 +40,7 @@ const ModalCadastrarFuncionario = ({ closeModal }) => {
                     </form>
                 </section>
 
-                <footer>
+                <footer className={styles.modal_footer}>
                     <button type="submit" className={styles.btn_cadastrar} onClick={() => closeModal(false)}>
                         Cadastrar
                     </button>

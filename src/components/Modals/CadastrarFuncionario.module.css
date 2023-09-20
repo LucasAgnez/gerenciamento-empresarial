@@ -14,7 +14,6 @@
 .btn_cadastrar {
     padding: 5px 5px 5px 5px;
     border-radius: 5px;
-    margin-left: auto;
     margin-top: 5px;
     margin-bottom: 5px;
     border: 0px solid transparent;
@@ -29,7 +28,6 @@
 .btn_fechar{
     padding: 5px 5px 5px 5px;
     border-radius: 5px;
-    margin-left: auto;
     margin-top: 5px;
     margin-bottom: 5px;
     border: 0px solid transparent;
@@ -41,4 +39,8 @@
     background-color: rgb(233, 75, 106);
 }
 
-
+.modal_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
