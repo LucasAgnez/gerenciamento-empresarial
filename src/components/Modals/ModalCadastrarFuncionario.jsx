@@ -8,7 +8,7 @@ const ModalCadastrarFuncionario = ({ closeModal }) => {
             <div className={styles.modal_container}>
                 <header>
                     <div className={styles.modal_titulo}>
-                        <h3>Cadastro de Funcionário</h3>
+                        <h3>Cadastrar Funcionário</h3>
                     </div>
                 </header>
 
@@ -16,11 +16,19 @@ const ModalCadastrarFuncionario = ({ closeModal }) => {
                     <form>
                         <fieldset>
                             <label>Nome Completo</label> <br />
-                            <input type="text" name="nome" id="nome" placeholder="Digite o nome completo." maxLength={250} required/>
+                            <input className={styles.input_form} type="text" name="nome" id="nome" placeholder="Digite o nome completo." maxLength={250} required/>
                         </fieldset>
 
                         <fieldset>
-                            <label> Departamento</label> <br />
+                            <label>Sexo: </label>
+                            <select name="sexo" id="sexo">
+                                <option value="s1">Masculino</option>
+                                <option value="s1">Feminino</option>
+                            </select>
+                        </fieldset>
+
+                        <fieldset>
+                            <label>Departamento: </label>
                             <select id="departamentos" name="departamentos" required>
                                 <option value="dp1">Departamento 01</option>
                                 <option value="dp2">Departamento 02</option>
@@ -30,12 +38,12 @@ const ModalCadastrarFuncionario = ({ closeModal }) => {
 
                         <fieldset>
                             <label>CPF</label> <br />
-                            <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" required/>
+                            <input className={styles.input_form} type="text" name="cpf" id="cpf" placeholder="000.000.000-00" required/>
                         </fieldset>
 
                         <fieldset>
                             <label>Email</label> <br />
-                            <input type="email" name="email" placeholder="exemplo@gmail.com" maxLength={250} id="email"/>
+                            <input className={styles.input_form} type="email" name="email" placeholder="exemplo@gmail.com" maxLength={250} id="email"/>
                         </fieldset>
                     </form>
                 </section>

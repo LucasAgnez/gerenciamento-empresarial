@@ -11,14 +11,20 @@
     z-index: 100; /* Garante que o modal apareça acima do conteúdo restante */   
 }
 
-.modal_container * {
+
+.modal_container {
+    animation: fade 0.5s;
     background-color: rgb(28, 0, 92);
+    border-radius: 15px;
+}
+
+.modal_container * {
     border: 0 solid transparent;
     padding: 10px;
-    animation: fade 0.5s;
 }
 
 .modal_titulo {
+    font-weight: 800;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
 }
@@ -67,4 +73,14 @@
         opacity: 1;
         transform: translateY(0px) scale(1);
     }
+}
+
+.input_form {
+    width: 90%;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+.required {
+    color: red;
 }
