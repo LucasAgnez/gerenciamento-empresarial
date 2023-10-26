@@ -24,4 +24,9 @@
     display: flex;
     justify-content: space-between;
 }
-
+.butoes{
+    margin-top: 7px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
