@@ -1,21 +1,21 @@
 [
     {
       "nome": "Daniel",
-      "departamento": "Departamento 01",
+      "departamento": "RH",
       "cpf": "123.456.789-01",
       "email": "danielscolao@gmail.com",
       "salario": 5000
     },
     {
       "nome": "Bob",
-      "departamento": "Departamento 02",
+      "departamento": "Design",
       "cpf": "987.654.321-02",
       "email": "bob@example.com",
       "salario": 6000
     },
     {
       "nome": "Michael",
-      "departamento": "Departamento 01",
+      "departamento": "Financeiro",
       "cpf": "447.654.321-02",
       "email": "michael@example.com",
       "salario": 2000

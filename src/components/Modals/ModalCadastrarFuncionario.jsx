@@ -31,9 +31,9 @@ const ModalCadastrarFuncionario = ({ closeModal }) => {
                         <fieldset>
                             <label>Departamento:</label>
                             <select className={styles.select_form} id="departamentos" name="departamentos" required>
-                                <option value="dp1">Departamento 01</option>
-                                <option value="dp2">Departamento 02</option>
-                                <option value="dp3">Departamento 03</option>
+                                <option value="design">Design</option>
+                                <option value="financeiro">Financeiro</option>
+                                <option value="rh">RH</option>
                             </select>
                         </fieldset>
 
