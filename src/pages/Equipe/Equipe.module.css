@@ -1,7 +1,7 @@
 .equipe{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     padding-left: 5rem;
 }
 
@@ -11,13 +11,14 @@
 }
 
 .filtro{
+    align-items: center;
     height : 40px ;
     width : 40px ;
     transition : all .3s ease ;
     border-radius: 100%;
     border-style: groove;
     border-color: #242424;
-    border-width: 0px;
+    border-width: 0.1px;
 }
 .filtro:hover{
     background-color: #d2d2d2b4;
@@ -25,6 +26,10 @@
 
 .pesquisa{
     padding: 2rem;
+}
+.pesquisa input{
+    padding: 0.25rem 0.5rem;
+    border: none;
 }
 
 .barraPesquisa{
@@ -37,8 +42,75 @@
 }
 
 .listaEquipe{
-    align-items: start;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+
+.tableHeader {
+    align-items: center;
+}
+
+.tableRowHeader{
+    background-color: rgb(64, 0, 94);
+    align-items: center;
+}
+
+
+td{
+    width: 150px;
+    padding: 5px 5px 5px 5px;
+    border-collapse: collapse;
+    border: 0px solid;
+}
+
+.tableRow{
+    width: 150px;
+    border-collapse: collapse;
+    border: 0px solid;
+}
+
+.tableRow:hover{
+    background-color: #4b4a4a;
+}
+
+.actions_div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.actions_btn {
+    margin-left: 3px;
+    border: 0cm;
+    padding: 3px;
+}
+
+.actions_btn:hover{
+    cursor: pointer;
+}
+
+.create_btn {
+    background-color:green;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+    border: 0cm solid white;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.create_btn:hover{
+    cursor: pointer;
+    background-color: darkgreen;
+}
+
+.btn_div {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
 }
