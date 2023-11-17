@@ -11,6 +11,12 @@ import { useState } from "react";
 const Equipe = () => {
 
   const [modalCadastro, setModalCadastro] = useState(false);
+  const [funcionarios, setFuncionarios] = useState(data);
+
+  const handleDeleteFuncionario = (index) => {
+    const newFuncionarios = funcionarios.filter((_, i) => i !== index);
+    setFuncionarios(newFuncionarios);
+  }
 
   return (
     <main className={styles.equipe}>
@@ -26,7 +32,7 @@ const Equipe = () => {
         </button>
       </section>
 
-      <caption><h3>Funcionários</h3></caption>
+      <h3>Funcionários</h3>
       <table border={1}>
 
         <thead>
@@ -36,25 +42,23 @@ const Equipe = () => {
             <th className={styles.tableHeader}>Departamento</th>
             <th className={styles.tableHeader}>CPF</th>
             <th className={styles.tableHeader}>Email</th>
-            {/* <th className={styles.tableHeader}>Salário</th> */}
             <th className={styles.tableHeader}>Ações</th>
           </tr>
         </thead>
 
         <tbody>
-          {data.map( (item, index) => (
+          {funcionarios.map( (item, index) => (
             <tr key={index} align='center' className={styles.tableRow}>
                 <td>{index}</td>
                 <td>{item.nome}</td>
                 <td>{item.departamento}</td>
                 <td>{item.cpf}</td>
                 <td>{item.email}</td>
-                {/* <td>{item.salario}</td> */}
                 <td>
                   <div className={styles.actions_div}>
                     <button className={styles.actions_btn}><BsEyeFill size={20} /></button>
                     <button className={styles.actions_btn}><BsFillPencilFill color='orange' size={20} /></button>
-                    <button className={styles.actions_btn}><BsFillTrashFill color='crimson' size={20} /></button>
+                    <button className={styles.actions_btn}><BsFillTrashFill color='crimson' size={20} onClick={() => handleDeleteFuncionario(index)} /></button>
                   </div>
                 </td>
             </tr>
@@ -63,26 +67,13 @@ const Equipe = () => {
         </tbody>
 
       </table>
-      <button type="button" class={styles.create_btn} onClick={() => setModalCadastro(true)}>
+      <button type="button" className={styles.create_btn} onClick={() => setModalCadastro(true)}>
         <div className={styles.btn_div}>
           <BsPlusLg size={20} />
           <span>Cadastrar</span>
         </div>
       </button>
-      {modalCadastro && <ModalCadastrarFuncionario closeModal={setModalCadastro} />}
-
-      {/* <section className={styles.listaEquipe}>
-        <FuncionarioMiniatura
-          nome="Daniel Sehn Colao"
-          id="10500312"
-          cargo="gestor de vendas"
-          idade="30"
-          departamento="vendas"
-        />
-        <FuncionarioMiniatura />
-        <FuncionarioMiniatura />
-        <FuncionarioMiniatura />
-      </section> */}
+      {modalCadastro && <ModalCadastrarFuncionario closeModal={setModalCadastro} funcionarios={funcionarios} />}
     </main>
   );
 };

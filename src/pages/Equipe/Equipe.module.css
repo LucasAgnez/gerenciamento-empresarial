@@ -47,6 +47,9 @@
     gap: 1rem;
 }
 
+table{
+    border-spacing: 0;
+}
 
 .tableHeader {
     align-items: center;
@@ -59,7 +62,7 @@
 
 
 td{
-    width: 150px;
+    width: 200px;
     padding: 5px 5px 5px 5px;
     border-collapse: collapse;
     border: 0px solid;
