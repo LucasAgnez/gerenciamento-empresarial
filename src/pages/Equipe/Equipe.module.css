@@ -55,11 +55,14 @@ table{
     align-items: center;
 }
 
-.tableRowHeader{
+.tableRowHeader th{
     background-color: rgb(64, 0, 94);
     align-items: center;
+    width: 200px;
+    padding: 5px 5px 5px 5px;
+    border-collapse: collapse;
+    border: 0px solid;
 }
-
 
 td{
     width: 200px;
