@@ -94,6 +94,9 @@ const ModalCadastrarFuncionario = ({ closeModal, funcionarios }) => {
                 </section>
 
                 <footer className={styles.modal_footer}>
+                    <button type="button" className={styles.btn_fechar} onClick={() => closeModal(false)}>
+                        Fechar
+                    </button>
                     <button type="submit" className={styles.btn_cadastrar} 
                         onClick={() => {
                             handleSubmit();
@@ -101,9 +104,6 @@ const ModalCadastrarFuncionario = ({ closeModal, funcionarios }) => {
                         }}
                     >
                         Confirmar
-                    </button>
-                    <button type="button" className={styles.btn_fechar} onClick={() => closeModal(false)}>
-                        Fechar
                     </button>
                 </footer>
             </div>

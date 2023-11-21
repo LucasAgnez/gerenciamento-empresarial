@@ -12,27 +12,38 @@ const Equipe = () => {
 
   const [modalCadastro, setModalCadastro] = useState(false);
   const [funcionarios, setFuncionarios] = useState(data);
+  const [searchInput, setSearchInput] = useState("");
 
   const handleDeleteFuncionario = (index) => {
     const newFuncionarios = funcionarios.filter((_, i) => i !== index);
     setFuncionarios(newFuncionarios);
   }
 
+  const funcionariosFiltrados = funcionarios.filter(item => {
+    return item.nome.toLowerCase().includes(searchInput.toLowerCase())
+  })
+
   return (
     <main className={styles.equipe}>
       <section className={styles.cabecalho}>
         <section className={styles.pesquisa}>
           <div className={styles.barraPesquisa}>
-            <input />
-            <FiSearch />
+            {/* <input />
+            <FiSearch /> */}
           </div>
         </section>
-        <button className={styles.filtro}>
+        {/* <button className={styles.filtro}>
           <FaFilter style={{margin: 0}}/>
-        </button>
+        </button> */}
       </section>
 
-      <h3>Funcionários</h3>
+      <h2>Funcionários</h2>
+
+      <div className={styles.search_filter}>
+        <label>Buscar:</label>
+        <input type="text" maxLength={255} onChange={e => setSearchInput(e.target.value)}/>
+      </div>
+
       <table border={1}>
 
         <thead>
@@ -47,7 +58,7 @@ const Equipe = () => {
         </thead>
 
         <tbody>
-          {funcionarios.map( (item, index) => (
+          {funcionariosFiltrados.map( (item, index) => (
             <tr key={index} align='center' className={styles.tableRow}>
                 <td>{index}</td>
                 <td>{item.nome}</td>

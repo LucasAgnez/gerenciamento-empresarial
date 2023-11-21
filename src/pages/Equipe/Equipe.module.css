@@ -70,6 +70,7 @@ td{
 
 .tableRow{
     width: 150px;
+    padding: 5px 5px 5px 5px;
     border-collapse: collapse;
     border: 0px solid;
 }
@@ -116,4 +117,17 @@ td{
     display: flex;
     flex-direction: row; 
     align-items: center;
+}
+
+
+.search_filter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+    margin-bottom: 5px;
+}
+
+.search_filter input{
+    margin-left: 5px;
 }
