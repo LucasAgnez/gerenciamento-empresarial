@@ -68,7 +68,7 @@
 
 .btn_cadastrar:hover {
     cursor: pointer;
-    background-color: rgb(54, 233, 54);
+    background-color: darkgreen;
 }
 
 .btn_fechar{
@@ -82,7 +82,7 @@
 
 .btn_fechar:hover{
     cursor: pointer;
-    background-color: rgb(233, 75, 106);
+    background-color: darkred;
 }
 
 .modal_footer {

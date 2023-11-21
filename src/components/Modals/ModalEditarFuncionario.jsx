@@ -1,32 +1,22 @@
 import React, { useState } from "react";
 import styles from "./ModalFuncionario.module.css";
 
-const ModalCadastrarFuncionario = ({ closeModal, funcionarios }) => {
+const ModalEditarFuncionario = ({ closeModal, funcionario }) => {
 
-    const [nome, setNome] = useState('');
-    const [departamento, setDepartamento] = useState('');
-    const [sexo, setSexo] = useState('');
-    const [cpf, setCpf] = useState('');
-    const [email, setEmail] = useState('');
-    const [salario, setSalario] = useState(0.0);
-
-    const funcionarioDto = {
-        nome: '',
-        cpf: '',
-        sexo: '',
-        email: '',
-        salario: 0.0,
-        departamento: ''
-    }
+    const [nome, setNome] = useState(funcionario.nome);
+    const [departamento, setDepartamento] = useState(funcionario.departamento);
+    const [sexo, setSexo] = useState(funcionario.sexo);
+    const [cpf, setCpf] = useState(funcionario.cpf);
+    const [email, setEmail] = useState(funcionario.email);
+    const [salario, setSalario] = useState(funcionario.salario);
 
     const handleSubmit = () => {
-        funcionarioDto.nome = nome;
-        funcionarioDto.cpf = cpf;
-        funcionarioDto.sexo = sexo;
-        funcionarioDto.email = email;
-        funcionarioDto.salario = salario;
-        funcionarioDto.departamento = departamento;
-        funcionarios.push(funcionarioDto);
+        funcionario.nome = nome;
+        funcionario.cpf = cpf;
+        funcionario.sexo = sexo;
+        funcionario.email = email;
+        funcionario.salario = salario;
+        funcionario.departamento = departamento;
     }
 
     return (
@@ -34,7 +24,7 @@ const ModalCadastrarFuncionario = ({ closeModal, funcionarios }) => {
             <div className={styles.modal_container}>
                 <header>
                     <div className={styles.modal_titulo}>
-                        <h3>Cadastrar Funcionário</h3>
+                        <h3>Editar Funcionário</h3>
                     </div>
                 </header>
 
@@ -111,4 +101,4 @@ const ModalCadastrarFuncionario = ({ closeModal, funcionarios }) => {
     )
 }
 
-export default ModalCadastrarFuncionario;
+export default ModalEditarFuncionario;

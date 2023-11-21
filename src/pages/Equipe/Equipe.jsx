@@ -5,12 +5,15 @@ import { FaFilter } from "react-icons/fa";
 import { BsFillPencilFill, BsFillTrashFill, BsEyeFill, BsPlusLg } from "react-icons/bs"
 import data from "./mock-data.json"
 import ModalCadastrarFuncionario from "../../components/Modals/ModalCadastrarFuncionario";
+import ModalEditarFuncionario from "../../components/Modals/ModalEditarFuncionario";
 import { useState } from "react";
 
 
 const Equipe = () => {
 
   const [modalCadastro, setModalCadastro] = useState(false);
+  const [modalEditar, setModalEditar] = useState(false);
+  const [funcionarioSelecionado, setFuncionarioSelecionado] = useState({});
   const [funcionarios, setFuncionarios] = useState(data);
   const [searchInput, setSearchInput] = useState("");
 
@@ -22,6 +25,12 @@ const Equipe = () => {
   const funcionariosFiltrados = funcionarios.filter(item => {
     return item.nome.toLowerCase().includes(searchInput.toLowerCase())
   })
+
+  const handleEditarFuncionario = (item) => {
+    console.log('estou aqui')
+    setModalEditar(true);
+    setFuncionarioSelecionado(item);
+  }
 
   return (
     <main className={styles.equipe}>
@@ -68,7 +77,7 @@ const Equipe = () => {
                 <td>
                   <div className={styles.actions_div}>
                     <button className={styles.actions_btn}><BsEyeFill size={20} /></button>
-                    <button className={styles.actions_btn}><BsFillPencilFill color='orange' size={20} /></button>
+                    <button className={styles.actions_btn}><BsFillPencilFill color='orange' size={20} onClick={() => handleEditarFuncionario(item)} /></button>
                     <button className={styles.actions_btn}><BsFillTrashFill color='crimson' size={20} onClick={() => handleDeleteFuncionario(index)} /></button>
                   </div>
                 </td>
@@ -85,6 +94,7 @@ const Equipe = () => {
         </div>
       </button>
       {modalCadastro && <ModalCadastrarFuncionario closeModal={setModalCadastro} funcionarios={funcionarios} />}
+      {modalEditar && <ModalEditarFuncionario closeModal={setModalEditar} funcionario={funcionarioSelecionado} />}
     </main>
   );
 };
