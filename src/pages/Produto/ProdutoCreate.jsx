@@ -6,29 +6,34 @@ const ProdutoCreate = () => {
     const [qntd, setQntd] = useState(0);
     const [img, setImg] = useState('');
 
-    const postData = () => {
-        const data = {
+    const postData = async () => {
+      const data = {
           nome: nome,
           qntd: qntd,
           img: img,
-        };
+      };
 
-        fetch("https://64ff5d1af8b9eeca9e2a0b54.mockapi.io/produto", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => response.json())
-        .then(responseData => {
-            console.log('Produto adicionado com sucesso:', responseData);
-            // Adicione lógica adicional conforme necessário, como navegação para outra página ou atualização do estado
-        })
-        .catch(error => {
-            console.error('Erro ao adicionar produto:', error);
-        });
-    };
+      console.log('Data a ser enviada:', data);
+
+      try {
+          const response = await fetch("https://64ff5d1af8b9eeca9e2a0b54.mockapi.io/produto", {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(data),
+          });
+
+          const responseData = await response.json();
+          console.log('Produto adicionado com sucesso:', responseData);
+      } catch (error) {
+          console.error('Erro ao adicionar produto:', error);
+      }
+  };
+
+  const handleButtonClick = () => {
+      postData();
+  };
 
     return (
         <main className={styles.estoque}>
@@ -58,7 +63,7 @@ const ProdutoCreate = () => {
                     />
                 </label>
               
-                <button onClick={postData}>Adicionar Produto</button>
+                <button onClick={handleButtonClick}>Adicionar Produto</button>
             </form>
         </main>
     );
