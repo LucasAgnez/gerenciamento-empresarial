@@ -9,6 +9,7 @@ import Reabastecimento from './pages/Reabastecimento/Reabastecimento';
 import Contratacao from './pages/Contratacao/Contratacao';
 import Configuracoes from './pages/Configuracoes/Configuracoes';
 import Funcionario from './pages/Funcionario/Funcionario';
+import ProdutoCreate from './pages/Produto/ProdutoCreate';
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
             <Route element={<Reabastecimento/>} path='/eventos/reabastecimento'/>
             <Route element={<Contratacao/>} path='/eventos/contratacao'/>
             <Route element={<Configuracoes/>} path='/configuracoes'/>
+            <Route element={<ProdutoCreate/>} path='/gerenciamento/estoque/create'/>
           </Routes>
         </BrowserRouter>
       </div>

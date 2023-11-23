@@ -44,3 +44,7 @@
     gap: 2rem;
     justify-self: center;
 }
+
+.addButton {
+    margin-bottom: 2rem;
+}

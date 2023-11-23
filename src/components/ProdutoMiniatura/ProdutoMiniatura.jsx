@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const ProdutoMiniatura = (props) => {
   const navigate = useNavigate();
-  const { id, nome, qntd, vendas } = props;
+  const { id, nome, qntd, vendas, img } = props;
   const [ contador, setContador ] = useState(0)
   const [ qtd, setQtd ] = useState(qntd)
   const [ inc, setInc ] = useState(qntd != 0 )
@@ -44,7 +44,7 @@ const ProdutoMiniatura = (props) => {
       onClick={() => navigate(`/gerenciamento/estoque/${id}`)}>
         <img
           className={styles.image}
-          src="404image"
+          src={img}
         />
         <section className={styles.infos}>
           <p>{nome}</p>
