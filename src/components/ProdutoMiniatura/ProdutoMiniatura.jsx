@@ -6,13 +6,31 @@ import { useState } from "react";
 
 const ProdutoMiniatura = (props) => {
   const navigate = useNavigate();
-  const { id, nome, qntd, vendas, img } = props;
+  const { id, nome, qntd, vendas, img, recarregarEstoque } = props;
   const [ contador, setContador ] = useState(0)
   const [ qtd, setQtd ] = useState(qntd)
   const [ inc, setInc ] = useState(qntd != 0 )
   const [ dec, setDec ] = useState(false)
 
+  const deleteProduto = async (id) => {
+    try {
+      const response = await fetch(`https://64ff5d1af8b9eeca9e2a0b54.mockapi.io/produto/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        console.log('Produto excluído com sucesso');
+        recarregarEstoque();
+      } else {
+        console.error('Erro ao excluir produto:', response.status);
+      }
+    } catch (error) {
+      console.error('Erro ao excluir produto:', error);
+    }
+  };
+
   //onClick={navigate(`/gerenciamento/estoque/${id}`)
+  //onClick={() => navigate(`/gerenciamento/estoque/${id}`)}
   function incrementa(){
     if(qtd == 0){
       return
@@ -40,8 +58,7 @@ const ProdutoMiniatura = (props) => {
     <div
       className={styles.produtoMiniatura}
     >
-      <section className={styles.conteudo}
-      onClick={() => navigate(`/gerenciamento/estoque/${id}`)}>
+      <section className={styles.conteudo}>
         <img
           className={styles.image}
           src={img}
@@ -49,6 +66,10 @@ const ProdutoMiniatura = (props) => {
         <section className={styles.infos}>
           <p>{nome}</p>
           <p>{qtd}</p>
+        </section>
+        <section>
+          <button>Editar</button>
+          <button onClick={() => deleteProduto(id)}>Excluir</button>
         </section>
       </section>
       { vendas ? 

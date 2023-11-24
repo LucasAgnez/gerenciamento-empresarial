@@ -24,6 +24,17 @@ const Estoque = () => {
       });
   }, []); // O segundo parâmetro vazio [] garante que o useEffect seja executado apenas uma vez
 
+  const recarregarEstoque = () => {
+    fetch("https://64ff5d1af8b9eeca9e2a0b54.mockapi.io/produto")
+      .then((response) => response.json())
+      .then((data) => {
+        setProdutos(data); 
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar os produtos:", error);
+      });
+  };
+
   return (
     <main className={styles.estoque}>
       <section className={styles.cabecalho}>
@@ -54,6 +65,7 @@ const Estoque = () => {
             nome={produto.nome}
             qntd={produto.qntd}
             img={produto.img} // URL da imagem
+            recarregarEstoque={recarregarEstoque}
           />
         ))}
       </section>

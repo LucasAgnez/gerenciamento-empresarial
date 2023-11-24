@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import styles from "./Produto.module.css";
+import { useNavigate } from 'react-router-dom';
 
 const ProdutoCreate = () => {
     const [nome, setNome] = useState('');
-    const [qntd, setQntd] = useState(0);
+    const [qntd, setQntd] = useState(1);
     const [img, setImg] = useState('');
+    const navigate = useNavigate();
 
-    const postData = async () => {
-      const data = {
+    const postProduto = async () => {
+      const produto = {
           nome: nome,
           qntd: qntd,
           img: img,
       };
 
-      console.log('Data a ser enviada:', data);
+      console.log('Produto a ser enviado:', produto);
 
       try {
           const response = await fetch("https://64ff5d1af8b9eeca9e2a0b54.mockapi.io/produto", {
@@ -21,18 +23,20 @@ const ProdutoCreate = () => {
               headers: {
                   'Content-Type': 'application/json',
               },
-              body: JSON.stringify(data),
+              body: JSON.stringify(produto),
           });
 
-          const responseData = await response.json();
-          console.log('Produto adicionado com sucesso:', responseData);
+          const responseProduto = await response.json();
+          console.log('Produto adicionado com sucesso:', responseProduto);
       } catch (error) {
           console.error('Erro ao adicionar produto:', error);
       }
   };
 
-  const handleButtonClick = () => {
-      postData();
+  const handleButtonClick = (e) => {
+      e.preventDefault();
+      postProduto();
+      navigate('/gerenciamento/estoque');
   };
 
     return (
