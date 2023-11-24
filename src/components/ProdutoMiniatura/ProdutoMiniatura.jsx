@@ -1,16 +1,16 @@
-import { useNavigate } from "react-router-dom";
 import styles from "./ProdutoMiniatura.module.css";
 import { Button } from "@mui/material";
 import { FaMinusCircle, FaPlusCircle} from "react-icons/fa";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProdutoMiniatura = (props) => {
-  const navigate = useNavigate();
   const { id, nome, qntd, vendas, img, recarregarEstoque } = props;
   const [ contador, setContador ] = useState(0)
   const [ qtd, setQtd ] = useState(qntd)
   const [ inc, setInc ] = useState(qntd != 0 )
   const [ dec, setDec ] = useState(false)
+  const navigate = useNavigate();
 
   const deleteProduto = async (id) => {
     try {
@@ -68,7 +68,7 @@ const ProdutoMiniatura = (props) => {
           <p>{qtd}</p>
         </section>
         <section>
-          <button>Editar</button>
+          <button onClick={() => navigate(`/gerenciamento/estoque/edit/${id}`)}>Editar</button>
           <button onClick={() => deleteProduto(id)}>Excluir</button>
         </section>
       </section>

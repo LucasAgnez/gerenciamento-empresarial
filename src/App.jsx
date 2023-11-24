@@ -10,6 +10,7 @@ import Contratacao from './pages/Contratacao/Contratacao';
 import Configuracoes from './pages/Configuracoes/Configuracoes';
 import Funcionario from './pages/Funcionario/Funcionario';
 import ProdutoCreate from './pages/Produto/ProdutoCreate';
+import ProdutoEdit from './pages/Produto/ProdutoEdit'
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
             <Route element={<Contratacao/>} path='/eventos/contratacao'/>
             <Route element={<Configuracoes/>} path='/configuracoes'/>
             <Route element={<ProdutoCreate/>} path='/gerenciamento/estoque/create'/>
+            <Route element={<ProdutoEdit/>} path='/gerenciamento/estoque/edit/:id'/>
           </Routes>
         </BrowserRouter>
       </div>

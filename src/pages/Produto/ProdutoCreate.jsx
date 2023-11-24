@@ -33,7 +33,7 @@ const ProdutoCreate = () => {
       }
   };
 
-  const handleButtonClick = (e) => {
+  const adicionarProduto = (e) => {
       e.preventDefault();
       postProduto();
       navigate('/gerenciamento/estoque');
@@ -67,7 +67,8 @@ const ProdutoCreate = () => {
                     />
                 </label>
               
-                <button onClick={handleButtonClick}>Adicionar Produto</button>
+                <button onClick={adicionarProduto}>Adicionar Produto</button>
+                <button onClick={() => navigate('/gerenciamento/estoque')}>Cancelar</button>
             </form>
         </main>
     );
