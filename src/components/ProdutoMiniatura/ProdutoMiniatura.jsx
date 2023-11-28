@@ -1,23 +1,29 @@
 import styles from "./ProdutoMiniatura.module.css";
 import { Button } from "@mui/material";
 import { FaMinusCircle, FaPlusCircle} from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ProdutosContext } from "../../context/produtosContext";
 
-const ProdutoMiniatura = (props) => {
-  const { id, nome, qntd, vendas, img, recarregarEstoque } = props;
-  const [ contador, setContador ] = useState(0)
-  const [ qtd, setQtd ] = useState(qntd)
+
+const ProdutoMiniatura = ({ id, nome, preco, qntd, venda, img, recarregarEstoque, cont }) => {
+  const [produto, setProduto] = useState({
+    contador: 0,
+    qtd: qntd,
+  })
   const [ inc, setInc ] = useState(qntd != 0 )
   const [ dec, setDec ] = useState(false)
   const navigate = useNavigate();
+
+  function updateStorage(){
+    localStorage.setItem('lista', JSON.stringify())
+  }
 
   const deleteProduto = async (id) => {
     try {
       const response = await fetch(`https://64ff5d1af8b9eeca9e2a0b54.mockapi.io/produto/${id}`, {
         method: 'DELETE',
       });
-
       if (response.ok) {
         console.log('Produto excluído com sucesso');
         recarregarEstoque();
@@ -32,25 +38,27 @@ const ProdutoMiniatura = (props) => {
   //onClick={navigate(`/gerenciamento/estoque/${id}`)
   //onClick={() => navigate(`/gerenciamento/estoque/${id}`)}
   function incrementa(){
-    if(qtd == 0){
+    if(produto.qtd == 0){
       return
     }
+    updateStorage()
     setInc(true)
     setDec(true)
-    setContador(contador + 1)
-    setQtd(qtd-1)
-    if(qtd-1==0){
+    setProduto({qtd: produto.qtd - 1, contador: produto.contador + 1})
+    if(produto.qtd-1==0){
       setInc(false)
     }
   }
+
+
   function decrementa(){
-    if(contador==0){
+    if(produto.contador==0){
       return
     }
-    setContador(contador-1)
-    setQtd(qtd+1)
+    updateStorage()
+    setProduto({qtd: produto.qtd + 1, contador: produto.contador - 1})
     setInc(true)
-    if(contador-1==0){
+    if(produto.contador-1==0){
       setDec(false)
     }
   }
@@ -65,24 +73,24 @@ const ProdutoMiniatura = (props) => {
         />
         <section className={styles.infos}>
           <p>{nome}</p>
-          <p>{qtd}</p>
-        </section>
-        <section>
-          <button onClick={() => navigate(`/gerenciamento/estoque/edit/${id}`)}>Editar</button>
-          <button onClick={() => deleteProduto(id)}>Excluir</button>
+          <p>{produto.qtd}</p>
         </section>
       </section>
-      { vendas ? 
+      { venda ? 
       <>
         <section className={styles.butoes}>
           <Button disabled={!dec} onClick={() => decrementa()}size='small' variant="text" ><FaMinusCircle/></Button>
           <Button disabled={!inc} onClick={() => incrementa()}size='small' variant="text"><FaPlusCircle/></Button>
         </section>
         <section>
-          <b>{contador}</b>
+          <b>{produto.contador}</b>
         </section>
       </>
-      : null
+      : 
+        <section className={styles.butoes}>
+          <Button onClick={() => navigate(`/gerenciamento/estoque/edit/${id}`)}>Editar</Button>
+          <Button onClick={() => deleteProduto(id)}>Excluir</Button>
+        </section>
       }
     </div>
   );

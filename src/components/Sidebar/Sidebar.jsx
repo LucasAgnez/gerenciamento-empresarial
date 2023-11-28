@@ -46,22 +46,7 @@ const Sidebar = () => {
                         elemBefore: () => <FiUsers/>,
                   },
                 ],
-              },
-              {
-                title: 'Eventos',
-                itemId: 'eventos',
-                elemBefore: () => <FiCalendar/>,
-                subNav: [
-                    {
-                        title: 'Registrar Reabastecimento',
-                        itemId: '/eventos/reabastecimento',
-                    },
-                    {
-                        title: 'Contratação',
-                        itemId: '/eventos/contratacao',
-                  },
-                ],
-              },
+              }
             ]}
           />
 

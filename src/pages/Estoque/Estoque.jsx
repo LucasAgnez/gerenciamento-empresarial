@@ -1,28 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Filtro from "../../components/Filtro/Filtro";
 import ProdutoMiniatura from "../../components/ProdutoMiniatura/ProdutoMiniatura";
+import ModalVendas from "../../components/Modals/ModalVendas"
 import styles from "./Estoque.module.css";
 import { TextField, Button } from '@mui/material/';
 import { FiSearch } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { ProdutosContext } from "../../context/produtosContext";
 
 const Estoque = () => {
   const tags=["esporte", "casual", "masculino", "feminino"];
   const [vendas, setVendas] = useState(false);
-  const [produtos, setProdutos] = useState([]);
+  const [modalVendas, setModalVendas] = useState(false)
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // URL da API que retorna a lista de produtos.
-    fetch("https://64ff5d1af8b9eeca9e2a0b54.mockapi.io/produto")
-      .then((response) => response.json())
-      .then((data) => {
-        setProdutos(data); // Atualiza o estado com a lista de produtos
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar os produtos:", error);
-      });
-  }, []); // O segundo parâmetro vazio [] garante que o useEffect seja executado apenas uma vez
+  const {produtos, lista} = useContext(ProdutosContext)
 
   const recarregarEstoque = () => {
     fetch("https://64ff5d1af8b9eeca9e2a0b54.mockapi.io/produto")
@@ -44,24 +36,29 @@ const Estoque = () => {
           onClick={() => setVendas(!vendas)}>
             Registrar Venda
         </Button>
+        <Button 
+          color="success"
+          variant="contained"
+          style={{marginLeft: "2rem"}}
+          disabled={vendas}
+          onClick={() => navigate(`/gerenciamento/estoque/create`)}>
+            Adicionar
+        </Button>
         <section className={styles.pesquisa}>
           <div className={styles.barraPesquisa}>
-          <TextField id="pesquisa" variant="standard"/>
+            <TextField id="pesquisa" variant="standard"/>
             <FiSearch />
           </div>
         </section>
         <Filtro slider={true} labels={tags}/>
       </section>
-      <section>
-        <button className={styles.addButton} onClick={() => navigate(`/gerenciamento/estoque/create`)}>
-            Adicionar
-        </button>
-      </section>
+      {modalVendas && <ModalVendas closeModal={setModalVendas} lista={lista} />}
       <section className={styles.estoqueGrid}>
       {produtos.map((produto) => (
           <ProdutoMiniatura
             key={produto.id} // Chave única para cada produto
             id={produto.id}
+            venda={vendas}
             nome={produto.nome}
             qntd={produto.qntd}
             img={produto.img} // URL da imagem
@@ -69,7 +66,9 @@ const Estoque = () => {
           />
         ))}
       </section>
-      { vendas ? <Button 
+      { vendas ? 
+        <Button 
+          onClick={() => setModalVendas(true)}
           color="success"
           variant="contained">
             Concluir

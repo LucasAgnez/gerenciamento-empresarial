@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 5rem;
+    overflow-y: scroll;
+    width: 87%;
 }
 
 .cabecalho{
@@ -41,7 +42,7 @@
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(3,1fr);
-    gap: 2rem;
+    gap: 4rem;
     justify-self: center;
 }
 

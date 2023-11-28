@@ -11,26 +11,29 @@ import Configuracoes from './pages/Configuracoes/Configuracoes';
 import Funcionario from './pages/Funcionario/Funcionario';
 import ProdutoCreate from './pages/Produto/ProdutoCreate';
 import ProdutoEdit from './pages/Produto/ProdutoEdit'
+import { ProdutosProvider } from './context/produtosContext';
 
 function App() {
     return (
-      <div className='app'>
-        <BrowserRouter>
-        <Sidebar/>
-          <Routes>
-            <Route element={<Home/>} path='/'/>
-            <Route element={<Estoque/>} path='/gerenciamento/estoque'/>
-            <Route element={<Produto/>} path="/gerenciamento/estoque/:id"  />
-            <Route element={<Equipe/>} path='/gerenciamento/equipe'/>
-            <Route element={<Funcionario/>} path='/gerenciamento/equipe/:id'/>
-            <Route element={<Reabastecimento/>} path='/eventos/reabastecimento'/>
-            <Route element={<Contratacao/>} path='/eventos/contratacao'/>
-            <Route element={<Configuracoes/>} path='/configuracoes'/>
-            <Route element={<ProdutoCreate/>} path='/gerenciamento/estoque/create'/>
-            <Route element={<ProdutoEdit/>} path='/gerenciamento/estoque/edit/:id'/>
-          </Routes>
-        </BrowserRouter>
-      </div>
+      <ProdutosProvider>
+        <div className='app'>
+          <BrowserRouter>
+            <Sidebar/>
+            <Routes>
+              <Route element={<Home/>} path='/'/>
+              <Route element={<Estoque/>} path='/gerenciamento/estoque'/>
+              <Route element={<Produto/>} path="/gerenciamento/estoque/:id"  />
+              <Route element={<Equipe/>} path='/gerenciamento/equipe'/>
+              <Route element={<Funcionario/>} path='/gerenciamento/equipe/:id'/>
+              <Route element={<Reabastecimento/>} path='/eventos/reabastecimento'/>
+              <Route element={<Contratacao/>} path='/eventos/contratacao'/>
+              <Route element={<Configuracoes/>} path='/configuracoes'/>
+              <Route element={<ProdutoCreate/>} path='/gerenciamento/estoque/create'/>
+              <Route element={<ProdutoEdit/>} path='/gerenciamento/estoque/edit/:id'/>
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </ProdutosProvider>
     );
 }
 
