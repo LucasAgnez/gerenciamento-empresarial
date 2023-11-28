@@ -10,12 +10,26 @@ const ModalVendas = (props) => {
     const { closeModal } = props;
     const [funcionarioId, setFuncionarioId] = useState('')
     const [funcionarios, setFuncionarios] = useState(data);
-    const {lista} = useContext(ProdutosContext)
+    const {lista, setLista, setProdutos, produtos} = useContext(ProdutosContext)
 
     const handleSubmit = () => {
-        setLista(produtos.map((item) => ({...item, qntd: 0})));
-        //atualiza estoque
+        console.log(produtos)
+        updateProduto()
     }
+    
+    function updateProduto(){
+        const atualizaEstoque = produtos.map(item => {
+            const vendido = lista.find(itemVendido => itemVendido.id === item.id);
+            if (vendido) {
+                const restante = item.qntd - vendido.qntd;
+                return { ...item, qntd: restante };
+            }
+            return item;
+        });
+        setProdutos(atualizaEstoque)
+        setLista(lista.map((item) => ({...item, qntd: 0})));
+    }
+
     function filterZeros(num){
         if(num.qntd > 0){
             return true
@@ -40,7 +54,7 @@ const ModalVendas = (props) => {
             <form>
                 <h3>Carrinho</h3>
                 <div className={styles.vendedor}>
-                    <p>ID Vendedor:</p>
+                    <p>Vendedor:</p>
                     <Select
                         required={true}
                         labelId="ID funcionario"
@@ -70,10 +84,10 @@ const ModalVendas = (props) => {
                         ))}
                     </tbody>
                 </table>
-                <Button type="submit" className={styles.btn_cadastrar} 
-                    onSubmit={() => {
+                <Button className={styles.btn_cadastrar} 
+                    onClick={() => {
                         handleSubmit();
-                        closeModal(false)                        
+                        //closeModal(false)                        
                     }}>
                     Confirmar
                 </Button>

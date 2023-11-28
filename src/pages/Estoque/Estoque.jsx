@@ -15,7 +15,18 @@ const Estoque = () => {
   const navigate = useNavigate();
 
   const {produtos, setProdutos, lista, setLista} = useContext(ProdutosContext)
-  
+
+  useEffect(() => {
+    const limparCarrinho = () => {
+      const qntdAtualizada = lista.map(item => ({
+        ...item,
+        qntd: 0,
+      }));
+      setLista(qntdAtualizada);
+    };
+
+    limparCarrinho();
+  }, []);
 
   const recarregarEstoque = () => {
     fetch("https://64ff5d1af8b9eeca9e2a0b54.mockapi.io/produto")
