@@ -16,7 +16,7 @@ const ModalVendas = (props) => {
         console.log(produtos)
         updateProduto()
     }
-    
+
     function updateProduto(){
         const atualizaEstoque = produtos.map(item => {
             const vendido = lista.find(itemVendido => itemVendido.id === item.id);
@@ -87,7 +87,7 @@ const ModalVendas = (props) => {
                 <Button className={styles.btn_cadastrar} 
                     onClick={() => {
                         handleSubmit();
-                        //closeModal(false)                        
+                        closeModal(false)                        
                     }}>
                     Confirmar
                 </Button>
