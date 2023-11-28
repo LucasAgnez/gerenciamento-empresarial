@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import { FaMinusCircle, FaPlusCircle} from "react-icons/fa";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ProdutosContext } from "../../context/produtosContext";
+import { ProdutosContext } from "../../context/ProdutosContext";
 
 
 const ProdutoMiniatura = ({ id, nome, preco, qntd, venda, img, recarregarEstoque, cont }) => {
