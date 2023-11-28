@@ -72,6 +72,7 @@ const Estoque = () => {
             id={produto.id}
             venda={vendas}
             nome={produto.nome}
+            preco={produto.preco}
             qntd={produto.qntd}
             img={produto.img} // URL da imagem
             recarregarEstoque={recarregarEstoque}

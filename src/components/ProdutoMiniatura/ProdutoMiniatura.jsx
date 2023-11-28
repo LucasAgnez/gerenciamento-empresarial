@@ -76,6 +76,7 @@ const ProdutoMiniatura = ({ id, nome, preco, qntd, venda, img, recarregarEstoque
         />
         <section className={styles.infos}>
           <p>{nome}</p>
+          <p>R${preco}</p>
           <p>{produto.qntd}</p>
         </section>
       </section>

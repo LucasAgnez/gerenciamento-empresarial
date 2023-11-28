@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const ProdutoEdit = () => {
     const [nome, setNome] = useState('');
+    const [preco, setPreco] = useState(1);
     const [qntd, setQntd] = useState(1);
     const [img, setImg] = useState('');
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ const ProdutoEdit = () => {
                 const produtoData = await response.json();
 
                 setNome(produtoData.nome);
+                setPreco(produtoData.preco);
                 setQntd(produtoData.qntd);
                 setImg(produtoData.img);
             } catch (error) {
@@ -29,6 +31,7 @@ const ProdutoEdit = () => {
     const updateProduto = async () => {
         const produto = {
             nome: nome,
+            preco: preco,
             qntd: qntd,
             img: img,
         };
@@ -66,6 +69,14 @@ const ProdutoEdit = () => {
                         type="text"
                         value={nome}
                         onChange={(e) => setNome(e.target.value)}
+                    />
+                </label>
+                <label>
+                    Preço:
+                    <input
+                        type="number"
+                        value={preco}
+                        onChange={(e) => setPreco(e.target.value)}
                     />
                 </label>
                 <label>

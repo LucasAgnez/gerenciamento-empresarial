@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ProdutoCreate = () => {
     const [nome, setNome] = useState('');
+    const [preco, setPreco] = useState(1);
     const [qntd, setQntd] = useState(1);
     const [img, setImg] = useState('');
     const navigate = useNavigate();
@@ -11,6 +12,7 @@ const ProdutoCreate = () => {
     const postProduto = async () => {
       const produto = {
           nome: nome,
+          preco: preco,
           qntd: qntd,
           img: img,
       };
@@ -48,6 +50,14 @@ const ProdutoCreate = () => {
                         type="text"
                         value={nome}
                         onChange={(e) => setNome(e.target.value)}
+                    />
+                </label>
+                <label>
+                    Preço:
+                    <input
+                        type="number"
+                        value={preco}
+                        onChange={(e) => setPreco(e.target.value)}
                     />
                 </label>
                 <label>
