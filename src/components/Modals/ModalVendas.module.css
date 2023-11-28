@@ -36,5 +36,11 @@
 }
 .itens{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 500px;
+}
+
+.item{
+    text-align: center;
 }

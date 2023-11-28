@@ -14,7 +14,8 @@ const Estoque = () => {
   const [modalVendas, setModalVendas] = useState(false)
   const navigate = useNavigate();
 
-  const {produtos, lista} = useContext(ProdutosContext)
+  const {produtos, setProdutos, lista, setLista} = useContext(ProdutosContext)
+  
 
   const recarregarEstoque = () => {
     fetch("https://64ff5d1af8b9eeca9e2a0b54.mockapi.io/produto")
@@ -68,7 +69,7 @@ const Estoque = () => {
       </section>
       { vendas ? 
         <Button 
-          onClick={() => setModalVendas(true)}
+          onClick={() => (setModalVendas(true))}
           color="success"
           variant="contained">
             Concluir

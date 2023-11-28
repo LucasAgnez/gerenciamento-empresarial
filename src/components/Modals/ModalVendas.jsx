@@ -1,23 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./ModalVendas.module.css";
 import data from "../../pages/Equipe/mock-data.json"
 import { Select, MenuItem, Button } from "@mui/material";
 import { FaAngleLeft } from "react-icons/fa";
+import { ProdutosContext } from "../../context/produtosContext";
+
 
 const ModalVendas = (props) => {
     const { closeModal } = props;
     const [funcionarioId, setFuncionarioId] = useState('')
     const [funcionarios, setFuncionarios] = useState(data);
-
-    const [lista, setLista] = useState([])
-    useEffect(() => {
-        setLista(JSON.parse(localStorage.getItem('lista')))
-    },[])
+    const {lista} = useContext(ProdutosContext)
 
     const handleSubmit = () => {
-     //atualiza estoque
+        setLista(produtos.map((item) => ({...item, qntd: 0})));
+        //atualiza estoque
     }
-
+    function filterZeros(num){
+        if(num.qntd > 0){
+            return true
+        }
+        return false
+    }
     const handleChange = (e) => {
         setFuncionarioId(e.target.value);
       };
@@ -46,19 +50,26 @@ const ModalVendas = (props) => {
                         onChange={handleChange}
                     >
                         {funcionarios.map((f, key) => (
-                            <MenuItem key={f.nome} value={f.nome}> {f.nome} </MenuItem>
+                            <MenuItem key={f.id} value={f.nome}> {f.nome} </MenuItem>
                         ))}
                     </Select>
                 </div>
-                <section className={styles.itens}>
-                {lista.map((item) => (
-                    <>
-                        <p>{item.nome}:</p>
-                        <p>{item.qntd}&nbsp;</p>
-                        <p>{item.preco}</p>
-                    </>
-                    ))}
-                </section>
+                <table className={styles.itens} key={0}>
+                    <tbody>
+                        <tr>
+                            <th>Nome Produto:</th>
+                            <th>Quantidade</th>
+                            <th>Preço</th>
+                        </tr>
+                        {lista.filter(filterZeros).map((item) => ( 
+                        <tr key={item.id} className={styles.item}>
+                            <td>{item.nome}:</td>
+                            <td>{item.qntd}</td>
+                            <td>R${parseFloat(item.qntd * item.preco).toFixed(2)}</td>
+                        </tr> 
+                        ))}
+                    </tbody>
+                </table>
                 <Button type="submit" className={styles.btn_cadastrar} 
                     onSubmit={() => {
                         handleSubmit();

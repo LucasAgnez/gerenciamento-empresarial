@@ -6,14 +6,15 @@ import { useNavigate } from "react-router-dom";
 import { ProdutosContext } from "../../context/produtosContext";
 
 
-const ProdutoMiniatura = ({ id, nome, preco, qntd, venda, img, recarregarEstoque, cont }) => {
+const ProdutoMiniatura = ({ id, nome, preco, qntd, venda, img, recarregarEstoque}) => {
   const [produto, setProduto] = useState({
+    qntd: qntd,
     contador: 0,
-    qtd: qntd,
   })
   const [ inc, setInc ] = useState(qntd != 0 )
   const [ dec, setDec ] = useState(false)
   const navigate = useNavigate();
+  const {setLista, lista} = useContext(ProdutosContext)
 
   function updateStorage(){
     localStorage.setItem('lista', JSON.stringify())
@@ -38,14 +39,15 @@ const ProdutoMiniatura = ({ id, nome, preco, qntd, venda, img, recarregarEstoque
   //onClick={navigate(`/gerenciamento/estoque/${id}`)
   //onClick={() => navigate(`/gerenciamento/estoque/${id}`)}
   function incrementa(){
-    if(produto.qtd == 0){
+    if(produto.qntd == 0){
       return
     }
+    setLista(lista.map((item) => ({...item, qntd: item.id==id ? produto.contador+1 : item.qntd})));
     updateStorage()
     setInc(true)
     setDec(true)
-    setProduto({qtd: produto.qtd - 1, contador: produto.contador + 1})
-    if(produto.qtd-1==0){
+    setProduto({qntd: produto.qntd - 1, contador: produto.contador + 1})
+    if(produto.qntd-1==0){
       setInc(false)
     }
   }
@@ -55,8 +57,9 @@ const ProdutoMiniatura = ({ id, nome, preco, qntd, venda, img, recarregarEstoque
     if(produto.contador==0){
       return
     }
+    setLista(lista.map((item) => ({...item, qntd: item.id==id ? produto.contador-1 : item.qntd})));
     updateStorage()
-    setProduto({qtd: produto.qtd + 1, contador: produto.contador - 1})
+    setProduto({qntd: produto.qntd + 1, contador: produto.contador - 1})
     setInc(true)
     if(produto.contador-1==0){
       setDec(false)
@@ -73,7 +76,7 @@ const ProdutoMiniatura = ({ id, nome, preco, qntd, venda, img, recarregarEstoque
         />
         <section className={styles.infos}>
           <p>{nome}</p>
-          <p>{produto.qtd}</p>
+          <p>{produto.qntd}</p>
         </section>
       </section>
       { venda ? 
