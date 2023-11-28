@@ -6,7 +6,7 @@ import styles from "./Estoque.module.css";
 import { TextField, Button } from '@mui/material/';
 import { FiSearch } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { ProdutosContext } from "../../context/produtosContext";
+import { ProdutosContext } from "../../context/ProdutosContext";
 
 const Estoque = () => {
   const tags=["esporte", "casual", "masculino", "feminino"];
