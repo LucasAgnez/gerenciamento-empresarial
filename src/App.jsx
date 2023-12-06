@@ -11,7 +11,7 @@ import Configuracoes from './pages/Configuracoes/Configuracoes';
 import Funcionario from './pages/Funcionario/Funcionario';
 import ProdutoCreate from './pages/Produto/ProdutoCreate';
 import ProdutoEdit from './pages/Produto/ProdutoEdit'
-import { ProdutosProvider } from './context/produtosContext';
+import { ProdutosProvider } from './context/ProdutosContext.jsx';
 
 function App() {
     return (

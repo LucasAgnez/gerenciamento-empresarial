@@ -3,7 +3,7 @@ import styles from "./ModalVendas.module.css";
 import data from "../../pages/Equipe/mock-data.json"
 import { Select, MenuItem, Button } from "@mui/material";
 import { FaAngleLeft } from "react-icons/fa";
-import { ProdutosContext } from "../../context/produtosContext";
+import { ProdutosContext } from "../../context/ProdutosContext";
 
 
 const ModalVendas = (props) => {
