@@ -4,6 +4,7 @@ import data from "../../pages/Equipe/mock-data.json"
 import { Select, MenuItem, Button } from "@mui/material";
 import { FaAngleLeft } from "react-icons/fa";
 import { ProdutosContext } from "../../context/ProdutosContext";
+import axios from "axios";
 
 
 const ModalVendas = (props) => {
@@ -14,7 +15,34 @@ const ModalVendas = (props) => {
 
     const handleSubmit = () => {
         console.log(produtos)
+        addVenda()
         updateProduto()
+    }
+
+    function addVenda(){
+        const prods = lista.filter(filterZeros).map(item => {
+            const prod = {
+                idProduto: item.id,
+                preco: item.preco,
+                nome: item.nome,
+                qntd: item.qntd
+            }
+            return prod
+        })
+        const venda = {
+            idVendedor: funcionarioId,
+            data: setData(),
+            produtos: prods,
+        }
+        console.log(venda)
+        //axios.post('http://localhost:3000/venda', venda).then(() => console.log('venda criada'))
+    }
+    function setData(){
+        const date = new Date();
+        let currentDay= String(date.getDate()).padStart(2, '0');
+        let currentMonth = String(date.getMonth()+1).padStart(2,"0");
+        let currentYear = date.getFullYear();
+        return `${currentDay}-${currentMonth}-${currentYear}`;
     }
 
     function updateProduto(){
@@ -27,6 +55,7 @@ const ModalVendas = (props) => {
             return item;
         });
         setProdutos(atualizaEstoque)
+        //axios.post('http://localhost:3000/estoque', atualizaEstoque).then(() => console.log('estoque atualizado'))
         setLista(lista.map((item) => ({...item, qntd: 0})));
     }
 

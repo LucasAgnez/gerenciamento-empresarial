@@ -13,7 +13,8 @@ import {
 import styles from "./Home.module.css";
 
 const Home = () => {
-  const data = [
+ // const vendas = axios.get('http://localhost:3000/venda').then(() => console.log('vendas carregadas'))  
+ const data = [
     {
       name: "Dia T",
       calcados: 21,
