@@ -11,75 +11,113 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import styles from "./Home.module.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 
 const Home = () => {
- // const vendas = axios.get('http://localhost:3000/venda').then(() => console.log('vendas carregadas'))  
- const data = [
-    {
-      name: "Dia T",
-      calcados: 21,
-      camisas: 30,
-    },
-		{
-      name: "Dia U",
-      calcados: 11,
-      camisas: 7,
-    },
-		{
-      name: "Dia V",
-      calcados: 17,
-      camisas: 10,
-    },{
-      name: "Dia W",
-      calcados: 27,
-      camisas: 39,
-    },
-    {
-      name: "Dia X",
-      camisas: 40,
-      calcados: 24,
-    },
-    {
-      name: "Dia Y",
-      camisas: 30,
-      calcados: 19,
-    },
-    {
-      name: "Dia Z",
-      camisas: 20,
-      calcados: 98,
-    },
-  ];
 
-  const data2 = [
-    {
-      name: "Fulano",
-      value: 50,
-    },
-    {
-      name: "Beltrano",
-      value: 35,
-    },
-    {
-      name: "Cicrano",
-      value: 20,
-    },
-  ];
+  const [vendas, setVendas] = useState()
+  const [vendedores, setVendedores] = useState()
+  async function fetchData() {
+    let response = await axios.get("http://localhost:3000/venda");
+    let vnds = response.data;
+    setVendas(vnds);
+    console.log(vnds)
+    let response2 = await axios.get("http://localhost:3000/funcionario");
+        let funcs = response2.data;
+        setVendedores(funcs.filter(f => {
+            if(f.departamento=="vendas") {
+                return true
+            }
+            return false
+        }));
+  }
 
-  const data3 = [
-    {
-      name: "Fulano",
-      value: 1200.0,
-    },
-    {
-      name: "Beltrano",
-      value: 700.12,
-    },
-    {
-      name: "Cicrano",
-      value: 1000,
-    },
-  ];
+  useEffect(() => {
+    fetchData();
+  }, []); 
+  
+
+  const calcularValorVenda = (produtos) => {
+    return produtos.reduce((total, produto) => total + (produto.preco * produto.qntd), 0);
+  };
+  
+  // Organizar as vendas por vendedor e separar por dia
+  const organizarVendas = (vendas) => {
+    const vendasPorVendedor = {};
+  
+    vendas.forEach((venda) => {
+      const { idVendedor, data, produtos } = venda;
+  
+      if (!vendasPorVendedor[idVendedor]) {
+        vendasPorVendedor[idVendedor] = {};
+      }
+  
+      if (!vendasPorVendedor[idVendedor][data]) {
+        vendasPorVendedor[idVendedor][data] = [];
+      }
+  
+      vendasPorVendedor[idVendedor][data].push(venda);
+    });
+  
+    const resultadoFinal = {};
+  
+    for (const vendedor in vendasPorVendedor) {
+      resultadoFinal[vendedor] = {};
+      for (const data in vendasPorVendedor[vendedor]) {
+        const vendasPorDia = vendasPorVendedor[vendedor][data];
+        const valorTotalVendas = vendasPorDia.reduce((total, venda) => total + calcularValorVenda(venda.produtos), 0);
+  
+        resultadoFinal[vendedor][data] = {
+          numeroVendas: vendasPorDia.length,
+          valorTotal: valorTotalVendas,
+        };
+      }
+    }
+    
+    console.log(resultadoFinal)
+    return resultadoFinal;
+  };
+
+  const organizarVendasPorDia = (vendas) => {
+    const vendasPorDia = {};
+  
+    vendas.forEach((venda) => {
+      const { data } = venda;
+  
+      if (!vendasPorDia[data]) {
+        vendasPorDia[data] = [];
+      }
+  
+      vendasPorDia[data].push(venda);
+    });
+  
+    const resultadoFinal = [];
+  
+    for (const data in vendasPorDia) {
+      resultadoFinal.push({
+        data: data,
+        vendas: vendasPorDia[data]
+      });
+    }
+    console.log(resultadoFinal)
+    return resultadoFinal;
+  };
+
+  const v  = vendas ? organizarVendas(vendas) : null
+  const vd  = vendas ? organizarVendasPorDia(vendas) : null
+  //name: dia
+  //dado 1: numero
+  //dado 2: numero
+  const graficoLinha = []
+
+  //name: pessoa
+  //value: numero
+  const pizzaVendedor = [];
+
+  const pizzaCategoria = [];
+
 
   return (
     <main className={styles.main}>
@@ -91,7 +129,7 @@ const Home = () => {
           <h3>Vendas por Vendedor</h3>
           <PieChart width={200} height={200}>
             <Pie
-              data={data2}
+              data={pizzaVendedor}
               dataKey="value"
               nameKey="name"
               cx="50%"
@@ -106,7 +144,7 @@ const Home = () => {
           <h3>Valor de vendas por Vendedor</h3>
           <PieChart width={200} height={200}>
             <Pie
-              data={data3}
+              data={pizzaCategoria}
               dataKey="value"
               nameKey="name"
               cx="50%"
@@ -128,7 +166,7 @@ const Home = () => {
         <LineChart
           width={730}
           height={250}
-          data={data}
+          data={graficoLinha}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
