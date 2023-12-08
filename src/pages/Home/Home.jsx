@@ -19,19 +19,19 @@ const Home = () => {
 
   const [vendas, setVendas] = useState()
   const [vendedores, setVendedores] = useState()
+
   async function fetchData() {
+    let response2 = await axios.get("http://localhost:3000/funcionario");
+    let funcs = response2.data;
+    setVendedores(funcs.filter(f => {
+        if(f.departamento=="vendas") {
+            return true
+        }
+        return false
+    }));
     let response = await axios.get("http://localhost:3000/venda");
     let vnds = response.data;
     setVendas(vnds);
-    console.log(vnds)
-    let response2 = await axios.get("http://localhost:3000/funcionario");
-        let funcs = response2.data;
-        setVendedores(funcs.filter(f => {
-            if(f.departamento=="vendas") {
-                return true
-            }
-            return false
-        }));
   }
 
   useEffect(() => {
@@ -45,39 +45,29 @@ const Home = () => {
   
   // Organizar as vendas por vendedor e separar por dia
   const organizarVendas = (vendas) => {
-    const vendasPorVendedor = {};
-  
+    const vendasPorFuncionario = {};
+
     vendas.forEach((venda) => {
-      const { idVendedor, data, produtos } = venda;
-  
-      if (!vendasPorVendedor[idVendedor]) {
-        vendasPorVendedor[idVendedor] = {};
-      }
-  
-      if (!vendasPorVendedor[idVendedor][data]) {
-        vendasPorVendedor[idVendedor][data] = [];
-      }
-  
-      vendasPorVendedor[idVendedor][data].push(venda);
-    });
-  
-    const resultadoFinal = {};
-  
-    for (const vendedor in vendasPorVendedor) {
-      resultadoFinal[vendedor] = {};
-      for (const data in vendasPorVendedor[vendedor]) {
-        const vendasPorDia = vendasPorVendedor[vendedor][data];
-        const valorTotalVendas = vendasPorDia.reduce((total, venda) => total + calcularValorVenda(venda.produtos), 0);
-  
-        resultadoFinal[vendedor][data] = {
-          numeroVendas: vendasPorDia.length,
-          valorTotal: valorTotalVendas,
+      const { idVendedor, produtos } = venda;
+
+      if (!vendasPorFuncionario[idVendedor]) {
+        vendasPorFuncionario[idVendedor] = {
+          name: vendedores.find(obj => {
+                    return obj._id === idVendedor
+                  }).nome,
+          vendas: [],
+          valorTotal: 0,
         };
       }
-    }
-    
+
+      vendasPorFuncionario[idVendedor].vendas.push(venda);
+      vendasPorFuncionario[idVendedor].valorTotal += calcularValorVenda(produtos);
+    });
+
+    // Formatar o resultado como um array de objetos
+    const resultadoFinal = Object.values(vendasPorFuncionario);
     console.log(resultadoFinal)
-    return resultadoFinal;
+    return resultadoFinal
   };
 
   const organizarVendasPorDia = (vendas) => {
@@ -101,22 +91,30 @@ const Home = () => {
         vendas: vendasPorDia[data]
       });
     }
-    console.log(resultadoFinal)
     return resultadoFinal;
   };
 
-  const v  = vendas ? organizarVendas(vendas) : null
-  const vd  = vendas ? organizarVendasPorDia(vendas) : null
+  const v  = vendas && vendedores ? organizarVendas(vendas) : []
+  const vd  = vendas && vendedores ? organizarVendasPorDia(vendas) : []
   //name: dia
   //dado 1: numero
   //dado 2: numero
-  const graficoLinha = []
 
+  const graficoLinha = vd.map(objeto => ({
+    name: objeto.data,
+    numeroDeVendas: objeto.vendas.length
+  }));
   //name: pessoa
   //value: numero
-  const pizzaVendedor = [];
+  const pizzaVendas = v.map(objeto => ({
+    name: objeto.name,
+    value: objeto.vendas.length
+  }));;
 
-  const pizzaCategoria = [];
+  const pizzaValor = v.map(objeto => ({
+    name: objeto.name,
+    value: objeto.valorTotal
+  }));;
 
 
   return (
@@ -129,7 +127,7 @@ const Home = () => {
           <h3>Vendas por Vendedor</h3>
           <PieChart width={200} height={200}>
             <Pie
-              data={pizzaVendedor}
+              data={pizzaVendas}
               dataKey="value"
               nameKey="name"
               cx="50%"
@@ -144,7 +142,7 @@ const Home = () => {
           <h3>Valor de vendas por Vendedor</h3>
           <PieChart width={200} height={200}>
             <Pie
-              data={pizzaCategoria}
+              data={pizzaValor}
               dataKey="value"
               nameKey="name"
               cx="50%"
@@ -174,8 +172,7 @@ const Home = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="calcados" stroke="#8884d8" />
-          <Line type="monotone" dataKey="camisas" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="numeroDeVendas" stroke="#8884d8" />
         </LineChart>
       </section>
     </main>
