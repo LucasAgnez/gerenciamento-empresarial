@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./ModalVendas.module.css";
-import data from "../../pages/Equipe/mock-data.json"
 import { Select, MenuItem, Button } from "@mui/material";
 import { FaAngleLeft } from "react-icons/fa";
 import { ProdutosContext } from "../../context/ProdutosContext";
@@ -10,32 +9,47 @@ import axios from "axios";
 const ModalVendas = (props) => {
     const { closeModal } = props;
     const [funcionarioId, setFuncionarioId] = useState('')
-    const [funcionarios, setFuncionarios] = useState(data);
+    const [funcionarios, setFuncionarios] = useState([]);
     const {lista, setLista, setProdutos, produtos} = useContext(ProdutosContext)
 
+    async function fetchData() {
+        let response = await axios.get("http://localhost:3000/funcionario");
+        let funcs = response.data;
+        setFuncionarios(funcs.filter(f => {
+            if(f.departamento=="vendas") {
+                return true
+            }
+            return false
+        }));
+    }
+    
+    useEffect(() => {
+        fetchData();
+    }, []); 
+
     const handleSubmit = () => {
-        console.log(produtos)
         addVenda()
         updateProduto()
+        window.location.reload(false)
     }
 
     function addVenda(){
         const prods = lista.filter(filterZeros).map(item => {
             const prod = {
                 idProduto: item.id,
-                preco: item.preco,
+                preco: parseFloat(item.preco).toFixed(2),
                 nome: item.nome,
                 qntd: item.qntd
             }
             return prod
         })
         const venda = {
-            idVendedor: funcionarioId,
             data: setData(),
+            idVendedor: funcionarioId,
             produtos: prods,
         }
         console.log(venda)
-        //axios.post('http://localhost:3000/venda', venda).then(() => console.log('venda criada'))
+        axios.post('http://localhost:3000/venda', venda).then(() => console.log('venda criada'))
     }
     function setData(){
         const date = new Date();
@@ -66,7 +80,7 @@ const ModalVendas = (props) => {
         return false
     }
     const handleChange = (e) => {
-        setFuncionarioId(e.target.value);
+        setFuncionarioId(e.target.value)
       };
 
     return (
@@ -93,14 +107,14 @@ const ModalVendas = (props) => {
                         onChange={handleChange}
                     >
                         {funcionarios.map((f, key) => (
-                            <MenuItem key={f.id} value={f.nome}> {f.nome} </MenuItem>
+                            <MenuItem key={f.id} value={f._id}> {f.nome} </MenuItem>
                         ))}
                     </Select>
                 </div>
                 <table className={styles.itens} key={0}>
                     <tbody>
                         <tr>
-                            <th>Nome Produto:</th>
+                            <th>Nome Produto</th>
                             <th>Quantidade</th>
                             <th>Preço</th>
                         </tr>
