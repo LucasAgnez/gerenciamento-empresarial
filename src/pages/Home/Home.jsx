@@ -72,40 +72,55 @@ const Home = () => {
 
   const organizarVendasPorDia = (vendas) => {
     const vendasPorDia = {};
+    const dataAtual = new Date(); // Obter a data atual
+    const seteDiasAtras = new Date(dataAtual);
+    seteDiasAtras.setDate(seteDiasAtras.getDate() - 7)
   
     vendas.forEach((venda) => {
       const { data } = venda;
-  
-      if (!vendasPorDia[data]) {
-        vendasPorDia[data] = [];
+      const partesData = data.split('-'); // Divide a string da data em dia, mês e ano
+      const dataVenda = new Date( partesData[2], partesData[1] - 1, partesData[0]);
+      console.log(dataVenda)
+      if (dataVenda >= seteDiasAtras){
+        if (!vendasPorDia[data]) {
+          vendasPorDia[data] = [];
+        }
+        vendasPorDia[data].push(venda);
       }
   
-      vendasPorDia[data].push(venda);
     });
   
     const resultadoFinal = [];
   
-    for (const data in vendasPorDia) {
-      resultadoFinal.push({
-        data: data,
-        vendas: vendasPorDia[data]
-      });
+    for (let i = 6; i >= 0; i--) {
+      const dataVerificada = new Date(dataAtual);
+      dataVerificada.setDate(dataAtual.getDate() - i);
+  
+      const dataFormatada = `${dataVerificada.getDate().toString().padStart(2, '0')}-${(dataVerificada.getMonth() + 1).toString().padStart(2, '0')}-${dataVerificada.getFullYear()}`;
+  
+      if (vendasPorDia[dataFormatada]) {
+        resultadoFinal.push({
+          data: dataFormatada,
+          vendas: vendasPorDia[dataFormatada]
+        });
+      } else {
+        resultadoFinal.push({
+          data: dataFormatada,
+          vendas: []
+        });
+      }
     }
-    return resultadoFinal;
+    return resultadoFinal.sort((a, b) => a.data > b.data ? 1 : -1);
   };
 
   const v  = vendas && vendedores ? organizarVendas(vendas) : []
   const vd  = vendas && vendedores ? organizarVendasPorDia(vendas) : []
-  //name: dia
-  //dado 1: numero
-  //dado 2: numero
 
   const graficoLinha = vd.map(objeto => ({
     name: objeto.data,
     numeroDeVendas: objeto.vendas.length
   }));
-  //name: pessoa
-  //value: numero
+
   const pizzaVendas = v.map(objeto => ({
     name: objeto.name,
     value: objeto.vendas.length
