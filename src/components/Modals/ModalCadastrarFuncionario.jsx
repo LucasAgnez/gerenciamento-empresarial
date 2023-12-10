@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import styles from "./ModalFuncionario.module.css";
+import axios from "axios";
+import { backend_config } from "../../config/backend.config";
 
-const ModalCadastrarFuncionario = ({ closeModal, funcionarios }) => {
+const ModalCadastrarFuncionario = ({ closeModal, modal }) => {
 
     const [nome, setNome] = useState('');
     const [departamento, setDepartamento] = useState('');
@@ -19,14 +21,18 @@ const ModalCadastrarFuncionario = ({ closeModal, funcionarios }) => {
         departamento: ''
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         funcionarioDto.nome = nome;
         funcionarioDto.cpf = cpf;
         funcionarioDto.sexo = sexo;
         funcionarioDto.email = email;
         funcionarioDto.salario = salario;
         funcionarioDto.departamento = departamento;
-        funcionarios.push(funcionarioDto);
+        try {
+            await axios.post(backend_config.url+'/funcionario', funcionarioDto)
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     return (
@@ -100,6 +106,7 @@ const ModalCadastrarFuncionario = ({ closeModal, funcionarios }) => {
                     <button type="submit" className={styles.btn_cadastrar} 
                         onClick={() => {
                             handleSubmit();
+                            modal(true)
                             closeModal(false)                        
                         }}
                     >

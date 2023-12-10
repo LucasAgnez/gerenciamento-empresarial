@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import styles from "./ModalFuncionario.module.css";
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import axios from "axios";
+import { backend_config } from "../../config/backend.config";
 
-const ModalEditarFuncionario = ({ closeModal, funcionario }) => {
+const ModalEditarFuncionario = ({ closeModal, funcionario, modal }) => {
 
     const [nome, setNome] = useState(funcionario.nome);
     const [departamento, setDepartamento] = useState(funcionario.departamento);
@@ -10,13 +14,39 @@ const ModalEditarFuncionario = ({ closeModal, funcionario }) => {
     const [email, setEmail] = useState(funcionario.email);
     const [salario, setSalario] = useState(funcionario.salario);
 
-    const handleSubmit = () => {
-        funcionario.nome = nome;
-        funcionario.cpf = cpf;
-        funcionario.sexo = sexo;
-        funcionario.email = email;
-        funcionario.salario = salario;
-        funcionario.departamento = departamento;
+    const dto = {
+        _id:'',
+        nome: '',
+        email: '',
+        sexo: '',
+        departamento: '',
+        cpf: '',
+        salario: 0.0,
+    }
+
+    const departamentoOptions = ["RH","Design","Financeiro"]
+
+    const handleSubmit = async () => {
+        // funcionario.nome = nome;
+        // funcionario.cpf = cpf;
+        // funcionario.sexo = sexo;
+        // funcionario.email = email;
+        // funcionario.salario = salario;
+        // funcionario.departamento = departamento;
+        dto._id = funcionario._id
+        dto.nome = nome
+        dto.email = email
+        dto.sexo = sexo
+        dto.departamento = departamento
+        dto.cpf = cpf
+        dto.salario = salario
+        try {
+            await axios.put(
+                backend_config.url+'/funcionario/'+dto._id, dto
+            );
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     return (
@@ -47,7 +77,7 @@ const ModalEditarFuncionario = ({ closeModal, funcionario }) => {
                             </select>
                         </fieldset>
 
-                        <fieldset>
+                        {/* <fieldset>
                             <label>Departamento:</label>
                             <select className={styles.select_form} id="departamentos" name="departamentos" required
                                 value={departamento} onChange={(e) => setDepartamento(e.target.value)} >
@@ -55,7 +85,19 @@ const ModalEditarFuncionario = ({ closeModal, funcionario }) => {
                                 <option value="Financeiro">Financeiro</option>
                                 <option value="RH">RH</option>
                             </select>
-                        </fieldset>
+                        </fieldset> */}
+                        <Autocomplete
+                            disablePortal
+                            id="combo-box-demo"
+                            options={departamentoOptions}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => 
+                                <TextField {...params} label="Departamento" required />}
+                            value={departamento}
+                            getOptionLabel={(option) => option}
+                            isOptionEqualToValue={(option, value) => option === value}
+                            onChange={(e) => {setDepartamento(e.target.textContent)}}
+                        />
 
                         <fieldset>
                             <label>CPF</label> <br />
@@ -80,22 +122,25 @@ const ModalEditarFuncionario = ({ closeModal, funcionario }) => {
                                     value={salario} onChange={(e) => setSalario(e.target.value)}
                                     />
                         </fieldset>
+
+                        <footer className={styles.modal_footer}>
+                            <button type="button" className={styles.btn_fechar} onClick={() => closeModal(false)}>
+                                Fechar
+                            </button>
+                            <button type="submit" className={styles.btn_cadastrar} 
+                                onClick={() => {
+                                    handleSubmit();
+                                    modal(true);
+                                    closeModal(false)                        
+                                }}
+                            >
+                                Confirmar
+                            </button>
+                        </footer>
+                        
                     </form>
                 </section>
 
-                <footer className={styles.modal_footer}>
-                    <button type="button" className={styles.btn_fechar} onClick={() => closeModal(false)}>
-                        Fechar
-                    </button>
-                    <button type="submit" className={styles.btn_cadastrar} 
-                        onClick={() => {
-                            handleSubmit();
-                            closeModal(false)                        
-                        }}
-                    >
-                        Confirmar
-                    </button>
-                </footer>
             </div>
         </div>
     )

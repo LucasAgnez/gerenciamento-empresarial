@@ -13,7 +13,8 @@
 
 .modal_container {
     animation: fade 0.5s;
-    background-color: rgb(28, 0, 92);
+    /* background-color: rgb(28, 0, 92); */
+    background-color: #ffffff;
     border-radius: 15px;
     padding: 0px 30px 20px 30px;
 }
@@ -41,9 +42,10 @@
 }
 
 .input_form {
-    background-color: rgb(28, 0, 92);
+    /* background-color: rgb(28, 0, 92); */
+    background-color: #ffffff;
     width: 100%;
-    border: 1px solid white;
+    border: 1px solid black;
     border-radius: 4px;
     /* border: 5px solid yellow; */
 }
@@ -64,6 +66,7 @@
     margin-bottom: 5px;
     border: 0px solid transparent;
     background-color: green;
+    color: white;
 }
 
 .btn_cadastrar:hover {
@@ -78,6 +81,7 @@
     margin-bottom: 5px;
     border: 0px solid transparent;
     background-color: crimson;
+    color: white;
 }
 
 .btn_fechar:hover{
@@ -87,6 +91,7 @@
 
 .modal_footer {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
 }
