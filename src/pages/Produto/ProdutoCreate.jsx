@@ -20,7 +20,7 @@ const ProdutoCreate = () => {
       console.log('Produto a ser enviado:', produto);
 
       try {
-          const response = await fetch("https://64ff5d1af8b9eeca9e2a0b54.mockapi.io/produto", {
+          const response = await fetch("http://localhost:3000/produto", {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',

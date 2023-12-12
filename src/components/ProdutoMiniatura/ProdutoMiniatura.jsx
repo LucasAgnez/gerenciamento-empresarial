@@ -22,7 +22,7 @@ const ProdutoMiniatura = ({ id, nome, preco, qntd, venda, img, recarregarEstoque
 
   const deleteProduto = async (id) => {
     try {
-      const response = await fetch(`https://64ff5d1af8b9eeca9e2a0b54.mockapi.io/produto/${id}`, {
+      const response = await fetch(`http://localhost:3000/produto/${id}`, {
         method: 'DELETE',
       });
       if (response.ok) {

@@ -19,6 +19,7 @@ const Home = () => {
 
   const [vendas, setVendas] = useState()
   const [vendedores, setVendedores] = useState()
+  const [produtos, setProdutos] = useState()
 
   async function fetchData() {
     let response2 = await axios.get("http://localhost:3000/funcionario");
@@ -32,6 +33,10 @@ const Home = () => {
     let response = await axios.get("http://localhost:3000/venda");
     let vnds = response.data;
     setVendas(vnds);
+
+    let response3 = await.axios.get("http://localhost:3000/produto");
+    let produtos = response.data;
+    setProdutos(produtos);
   }
 
   useEffect(() => {

@@ -8,7 +8,7 @@ export const ProdutosProvider = (props) => {
 
     useEffect(() => {
         // URL da API que retorna a lista de produtos.
-        fetch("https://64ff5d1af8b9eeca9e2a0b54.mockapi.io/produto")
+        fetch("http://localhost:3000/produto")
           .then((response) => response.json())
           .then((data) => {
             setProdutos(data); // Atualiza o estado com a lista de produtos
