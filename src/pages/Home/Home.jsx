@@ -34,7 +34,7 @@ const Home = () => {
     let vnds = response.data;
     setVendas(vnds);
 
-    let response3 = await.axios.get("http://localhost:3000/produto");
+    let response3 = await axios.get("http://localhost:3000/produto");
     let produtos = response.data;
     setProdutos(produtos);
   }
