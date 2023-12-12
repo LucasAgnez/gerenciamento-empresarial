@@ -13,7 +13,7 @@ const ProdutoEdit = () => {
     useEffect(() => {
         const fetchProduto = async () => {
             try {
-                const response = await fetch(`https://64ff5d1af8b9eeca9e2a0b54.mockapi.io/produto/${id}`);
+                const response = await fetch(`http://localhost:3000/produto/${id}`);
                 const produtoData = await response.json();
 
                 setNome(produtoData.nome);
