@@ -70,7 +70,7 @@ const ModalVendas = (props) => {
                     img: item.img, 
                     preco: item.preco
                 }
-                console.log(item)
+                console.log(prod)
                 axios.put('http://localhost:3000/produto/' + item._id, prod).then(() => console.log('estoque atualizado'))
                 return { ...item, qntd: restante };
             }
