@@ -69,7 +69,7 @@ const Estoque = () => {
       {produtos.map((produto) => (
           <ProdutoMiniatura
             key={produto.id} // Chave única para cada produto
-            id={produto.id}
+            id={produto._id}
             venda={vendas}
             nome={produto.nome}
             preco={produto.preco}

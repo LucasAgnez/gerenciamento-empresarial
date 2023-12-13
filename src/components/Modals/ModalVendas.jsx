@@ -36,7 +36,7 @@ const ModalVendas = (props) => {
     function addVenda(){
         const prods = lista.filter(filterZeros).map(item => {
             const prod = {
-                idProduto: item.id,
+                idProduto: item._id,
                 preco: parseFloat(item.preco).toFixed(2),
                 nome: item.nome,
                 qntd: item.qntd
@@ -61,15 +61,22 @@ const ModalVendas = (props) => {
 
     function updateProduto(){
         const atualizaEstoque = produtos.map(item => {
-            const vendido = lista.find(itemVendido => itemVendido.id === item.id);
+            const vendido = lista.find(itemVendido => itemVendido._id === item._id);
             if (vendido) {
                 const restante = item.qntd - vendido.qntd;
+                const prod = {
+                    nome: item.nome, 
+                    qntd: restante, 
+                    img: item.img, 
+                    preco: item.preco
+                }
+                console.log(item)
+                axios.put('http://localhost:3000/produto/' + item._id, prod).then(() => console.log('estoque atualizado'))
                 return { ...item, qntd: restante };
             }
             return item;
         });
         setProdutos(atualizaEstoque)
-        //axios.post('http://localhost:3000/estoque', atualizaEstoque).then(() => console.log('estoque atualizado'))
         setLista(lista.map((item) => ({...item, qntd: 0})));
     }
 

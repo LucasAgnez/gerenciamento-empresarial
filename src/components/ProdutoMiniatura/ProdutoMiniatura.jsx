@@ -39,10 +39,11 @@ const ProdutoMiniatura = ({ id, nome, preco, qntd, venda, img, recarregarEstoque
   //onClick={navigate(`/gerenciamento/estoque/${id}`)
   //onClick={() => navigate(`/gerenciamento/estoque/${id}`)}
   function incrementa(){
+    console.log(lista)
     if(produto.qntd == 0){
       return
     }
-    setLista(lista.map((item) => ({...item, qntd: item.id==id ? produto.contador+1 : item.qntd})));
+    setLista(lista.map((item) => ({...item, qntd: item._id==id ? produto.contador+1 : item.qntd})));
     updateStorage()
     setInc(true)
     setDec(true)
