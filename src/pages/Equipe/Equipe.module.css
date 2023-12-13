@@ -122,11 +122,15 @@ td{
 }
 
 .btn_div {
-    display: flex;
+    /* display: flex;
     flex-direction: row; 
-    align-items: center;
-}
+    align-items: center; */
 
+    text-align: center;
+    margin-left: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 
 .search_filter {
     display: flex;

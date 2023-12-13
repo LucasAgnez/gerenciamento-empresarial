@@ -1,13 +1,16 @@
-import FuncionarioMiniatura from "../../components/FuncionarioMiniatura/FuncionarioMiniatura";
 import styles from "./Equipe.module.css";
-import { FiSearch } from "react-icons/fi";
-import { FaFilter } from "react-icons/fa";
 import { BsFillPencilFill, BsFillTrashFill, BsEyeFill, BsPlusLg } from "react-icons/bs"
 import ModalCadastrarFuncionario from "../../components/Modals/ModalCadastrarFuncionario";
 import ModalEditarFuncionario from "../../components/Modals/ModalEditarFuncionario";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { backend_config } from "../../config/backend.config";
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+import TextField from '@mui/material/TextField';
+import { FiSearch } from "react-icons/fi";
+import InputAdornment from '@mui/material/InputAdornment';
+import Button from '@mui/material/Button';
 
 const Equipe = () => {
 
@@ -23,7 +26,9 @@ const Equipe = () => {
       const response = await axios.delete(
         backend_config.url+'/funcionario/'+idFuncionario
       )
-      if(response.data){
+      if(response.status === 200 &&
+        response.data){
+          toast.success('Funcionário Removido com Sucesso.')
         await getFuncionarios();
       }
     } catch (error) {
@@ -78,8 +83,19 @@ const Equipe = () => {
       <h2>Funcionários</h2>
 
       <div className={styles.search_filter}>
-        <label>Buscar:</label>
-        <input type="text" maxLength={255} onChange={e => setSearchInput(e.target.value)}/>
+        <TextField id="outlined-basic" 
+          label="Buscar Funcionário" 
+          size="small"
+          variant="outlined" 
+          onChange={e => setSearchInput(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <FiSearch />
+              </InputAdornment>
+            ),
+          }}
+        />
       </div>
 
       <table border={1}>
@@ -124,12 +140,18 @@ const Equipe = () => {
         </tbody>
 
       </table>
-      <button type="button" className={styles.create_btn} onClick={() => setModalCadastro(true)}>
-        <div className={styles.btn_div}>
-          <BsPlusLg size={20} />
-          <span>Cadastrar</span>
-        </div>
-      </button>
+
+      <div className={styles.btn_div}>
+          <Button 
+              variant="contained"
+              type="submit"
+              onClick={() => setModalCadastro(true)}
+              color="success"
+              startIcon={<BsPlusLg />}
+              >
+                Cadastrar
+          </Button>
+      </div>
 
       {/* Renderizacao condicional */}
       {modalCadastro && <ModalCadastrarFuncionario closeModal={setModalCadastro} modal={setModalFechado} />}

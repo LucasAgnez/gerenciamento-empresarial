@@ -12,11 +12,15 @@ import Funcionario from './pages/Funcionario/Funcionario';
 import ProdutoCreate from './pages/Produto/ProdutoCreate';
 import ProdutoEdit from './pages/Produto/ProdutoEdit'
 import { ProdutosProvider } from './context/ProdutosContext.jsx';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
     return (
       <ProdutosProvider>
         <div className='app'>
+          <ToastContainer
+            theme='colored'
+          />
           <BrowserRouter>
             <Sidebar/>
             <Routes>
