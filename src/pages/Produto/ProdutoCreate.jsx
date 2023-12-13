@@ -35,11 +35,15 @@ const ProdutoCreate = () => {
       }
   };
 
-  const adicionarProduto = (e) => {
-      e.preventDefault();
-      postProduto();
-      navigate('/gerenciamento/estoque');
-  };
+  const adicionarProduto = async (e) => {
+    e.preventDefault();
+    try {
+        await postProduto();
+        navigate('/gerenciamento/estoque');
+    } catch (error) {
+        console.error('Erro ao adicionar produto:', error);
+    }
+};
 
     return (
         <main className={styles.estoque}>

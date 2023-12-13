@@ -39,6 +39,10 @@ const Estoque = () => {
       });
   };
 
+  useEffect(() => {
+    recarregarEstoque();
+  }, [navigate]);
+
   return (
     <main className={styles.estoque}>
       <section className={styles.cabecalho}>
@@ -68,7 +72,7 @@ const Estoque = () => {
       <section className={styles.estoqueGrid}>
       {produtos.map((produto) => (
           <ProdutoMiniatura
-            key={produto.id} // Chave única para cada produto
+            key={produto._id} // Chave única para cada produto
             id={produto._id}
             venda={vendas}
             nome={produto.nome}

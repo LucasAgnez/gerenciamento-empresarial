@@ -54,10 +54,14 @@ const ProdutoEdit = () => {
         }
     };
 
-    const editarProduto = (e) => {
+    const editarProduto = async (e) => {
         e.preventDefault();
-        updateProduto();
-        navigate('/gerenciamento/estoque');
+        try {
+            await updateProduto();
+            navigate('/gerenciamento/estoque');
+        } catch (error) {
+            console.error('Erro ao editar produto:', error);
+        }
     };
 
     return (
